@@ -14,8 +14,8 @@ class CreateAreasTable extends Migration
     public function up()
     {
         Schema::create('areas', function (Blueprint $table) {
-            $table->id('area_id');
-            $table->string('area_name');
+            $table->id();
+            $table->string('area_name')->comment('地域');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

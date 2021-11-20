@@ -65,7 +65,7 @@
         .logo{
             position:relative;
             width:10px;
-            top:-9px;
+            top:-3px;
             left:200px;
         }
 

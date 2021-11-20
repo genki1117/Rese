@@ -14,6 +14,7 @@ class LoginController extends Controller
 
     public function checkUser(Request $request)
     {
+        // ↓ユーザーの判定
         $email = $request->email;
         $password = $request->password;
         if(Auth::attempt(['email' => $email,

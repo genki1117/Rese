@@ -21,6 +21,10 @@ Route::get('/guest/login',[LoginController::class,'index'])->name('login');
 Route::get('/user/mypage',[LoginController::class,'checkUser'])->middleware('auth')->name('mypage');
 Route::post('/user/mypage',[LoginController::class,'checkUser'])->middleware('auth')->name('mypage');
 
+Route::get('/guest/register',[RegisterController::class,'index']);
+Route::get('guest/thanks',[RegisterController::class,'add']);
+Route::post('guest/thanks',[RegisterController::class,'create']);
+
 
 
 

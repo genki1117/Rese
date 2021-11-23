@@ -2,31 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ClientRequest;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\ClientRequest;
+use Illuminate\Validation\Rules;
+use Illuminate\Routing\Redirector;
+
 
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function store()
     {
         return view('guest.register');
     }
 
-    public function add()
+    public function create(Request $request)
     {
-        return view('guest.thanks');
-    }
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required',Rules\Password::defaults()]
+        ]);
 
-    public function create(ClientRequest $request)
-    {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        Auth::login($user);
+        return redirect()->route('thanks');
+    }
+
+    public function add()
+    {
+        return view('guest.thanks');
     }
 }

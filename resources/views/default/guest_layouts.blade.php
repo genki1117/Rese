@@ -46,6 +46,7 @@
     <style>
         html,body{
             height: 100%;
+            background-color:#eeeeee;
         }
 
         *{
@@ -57,16 +58,17 @@
         }
 
         .main_content{
-            background-color:#eeeeee;
-            height:100%;
-            position:relative;
+            /* height:100%; */
+            /* position:relative; */
+            /* border:2px solid red; */
+            padding: 50px 100px;
         }
 
         .logo{
             position:relative;
             width:10px;
-            top:-3px;
-            left:200px;
+            top:-45px;
+            left:90px;
         }
 
         .logo h2{
@@ -87,6 +89,7 @@
             position: absolute;
             height: 100vh;
             width: 100%;
+            top:-1px;
             left: -100%;
             background: #fff;
             transition: .7s;
@@ -110,8 +113,8 @@
             height: 43px;
             cursor: pointer;
             position: relative;
-            left: 120px;
-            top: 40px;
+            /* left: 120px; */
+            /* top: 40px; */
             background-color:#305dff;
             border-radius:7px;
             box-shadow:4px 4px 5px 1px gray;

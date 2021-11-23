@@ -3,40 +3,36 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\IndexController;
 
 
+Route::get('/',[IndexController::class,'store']);
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/guest/login',[LoginController::class,'index'])->name('login');
-Route::get('/user/mypage',[LoginController::class,'checkUser'])->middleware('auth')->name('mypage');
-Route::post('/user/mypage',[LoginController::class,'checkUser'])->middleware('auth')->name('mypage');
+Route::get('/register',[RegisterController::class,'store']);
+Route::post('/thanks',[RegisterController::class,'create']);
+Route::get('/thanks',[RegisterController::class,'add'])->name('thanks');
 
-Route::get('/guest/register',[RegisterController::class,'index']);
-Route::get('guest/thanks',[RegisterController::class,'add']);
-Route::post('guest/thanks',[RegisterController::class,'create']);
+Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::post('/login',[LoginController::class,'checkUser']);
+
+Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
+Route::post('/logout',[MyPageController::class,'destroy'])->middleware('auth')->name('logout');
 
 
 
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 
 

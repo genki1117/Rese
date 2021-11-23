@@ -6,8 +6,11 @@
                 <h2>Login</h2>
             </div>
             <div class="login_content_input">
-                <form action="/user/mypage" method="post">
+                <form action="/login" method="post">
                     @csrf
+                    @error('email')
+                    <span>{{$message}}</span>
+                    @enderror
                     <label class="input_label"><i class="fas fa-envelope"></i><input type="email" name="email" class="input" placeholder="Email" size="25"></label>
                     <label class="input_label"><i class="fas fa-lock"></i><input type="password" name="password" class="input" placeholder="Password" size="25"></label>
                     <div class="login_btn">

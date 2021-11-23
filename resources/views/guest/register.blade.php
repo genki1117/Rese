@@ -6,8 +6,11 @@
                 <h2>Registration</h2>
             </div>
             <div class="login_content_input">
-                <form action="/guest/thanks" method="post">
+                <form action="/thanks" method="post">
                     @csrf
+                    @error('name')
+                    <span>{{$message}}</span>
+                    @enderror
                     <label class="input_label"><i class="fas fa-user"></i><input type="text" name="name" class="input" placeholder="Username" size="25"></label>
                     <label class="input_label"><i class="fas fa-envelope"></i><input type="email" name="email" class="input" placeholder="Email" size="25"></label>
                     <label class="input_label"><i class="fas fa-lock"></i><input type="password" name="password" class="input" placeholder="Password" size="25"></label>

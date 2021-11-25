@@ -17,10 +17,12 @@
                         <ul>
                             <!-- --↓メニュー中身↓-- -->
                             <li><a href="#">Home</a></li>
+
                             <form action="/logout" method="post">
                                 @csrf
-                                <button>Logout</button>
+                                <button class="logout_btn">Logout</button>
                             </form>
+
                             <li><a href="#">Mypage</a></li>
                         </ul>
                     </nav>
@@ -88,6 +90,14 @@
             color: #305dff;
         }
 
+        .logout_btn{
+            border:none;
+            margin: 0 auto;
+            background:#fff;
+            color: #305dff;
+            cursor:pointer;
+        }
+
         .nav{
             position: absolute;
             height: 100vh;
@@ -104,10 +114,12 @@
             padding-top: 200px;
         }
 
-        .nav ul li{
+        .nav ul li,.logout_btn{
+            display:block;
             list-style-type: none;
             margin-top: 20px;
             font-size:30px;
+            font-weight:bold;
         }
 
         .menu {
@@ -116,8 +128,6 @@
             height: 43px;
             cursor: pointer;
             position: relative;
-            /* left: 120px; */
-            /* top: 40px; */
             background-color:#305dff;
             border-radius:7px;
             box-shadow:4px 4px 5px 1px gray;

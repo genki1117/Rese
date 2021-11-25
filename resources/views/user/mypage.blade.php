@@ -174,7 +174,7 @@
     .detail_btn{
         background:#305DFF;
         border:none;
-        margin: 20px 18px 10px 18px;
+        margin: 20px 0px 10px 18px;
         color:#fff;
         padding: 5px 15px;
         border-radius:5px;

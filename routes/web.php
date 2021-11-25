@@ -7,7 +7,12 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
 
 
-Route::get('/',[IndexController::class,'store']);
+Route::get('/',[IndexController::class,'index']);
+Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
+Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create']);
+// Route::get('/detail/:shop_id/{shop}',function(){
+//     return 'gogoggo';
+// });
 
 
 Route::get('/register',[RegisterController::class,'store']);

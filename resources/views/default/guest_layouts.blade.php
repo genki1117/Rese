@@ -54,28 +54,23 @@
             padding:0;
         }
 
+        .flex-item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
         .header_content{
+            
+        }
+
+        .h-menu{
+            width: 50%;;
+
         }
 
         .main_content{
-            /* height:100%; */
-            /* position:relative; */
-            /* border:2px solid red; */
-            padding: 50px 100px;
-        }
-
-        .logo{
-            position:relative;
-            width:10px;
-            top:-45px;
-            left:90px;
-        }
-
-        .logo h2{
-            display:inline-block;
-            font-size:30px;
-            color:#305dff;
-            font-weight:900;
+            padding: 30px 100px;
         }
 
     /* --↓ハンバーガメニュー↓-- */
@@ -83,6 +78,14 @@
         a{
             text-decoration: none;
             color: #305dff;
+        }
+
+        .logout_btn{
+            border:none;
+            margin: 0 auto;
+            background:#fff;
+            color: #305dff;
+            cursor:pointer;
         }
 
         .nav{
@@ -101,10 +104,12 @@
             padding-top: 200px;
         }
 
-        .nav ul li{
+        .nav ul li,.logout_btn{
+            display:block;
             list-style-type: none;
             margin-top: 20px;
             font-size:30px;
+            font-weight:bold;
         }
 
         .menu {
@@ -113,8 +118,6 @@
             height: 43px;
             cursor: pointer;
             position: relative;
-            /* left: 120px; */
-            /* top: 40px; */
             background-color:#305dff;
             border-radius:7px;
             box-shadow:4px 4px 5px 1px gray;
@@ -169,6 +172,19 @@
 
         .in{
             transform: translateX(100%);
+        }
+
+        .logo{
+            position:absolute;
+            top:30px;
+            left:15%;
+        }
+
+        .logo h2{
+            display:inline-block;
+            font-size:30px;
+            color:#305dff;
+            font-weight:900;
         }
     </style>
 </html>

@@ -6,7 +6,7 @@
                 <h2>Registration</h2>
             </div>
             <div class="login_content_input">
-                <form action="/thanks" method="post">
+                <form action="/register" method="post">
                     @csrf
                     @error('name')
                     <span>{{$message}}</span>

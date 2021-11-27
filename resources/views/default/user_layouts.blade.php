@@ -16,7 +16,7 @@
                     <nav class="nav" id="nav">
                         <ul>
                             <!-- --↓メニュー中身↓-- -->
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
 
                             <form action="/logout" method="post">
                                 @csrf
@@ -62,11 +62,8 @@
         .header_content{
         }
 
-        .main_content{
-            /* height:100%; */
-            /* position:relative; */
-            /* border:2px solid red; */
-            padding: 50px 100px;
+        .main_content{        
+            padding: 30px 100px 0 100px;
         }
 
         .logo{

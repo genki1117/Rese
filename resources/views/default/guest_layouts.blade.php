@@ -16,7 +16,7 @@
                     <nav class="nav" id="nav">
                         <ul>
                             <!-- --↓メニュー中身↓-- -->
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="#">Registration</a></li>
                             <li><a href="#">Login</a></li>
                         </ul>
@@ -61,7 +61,6 @@
         }
 
         .header_content{
-            
         }
 
         .h-menu{

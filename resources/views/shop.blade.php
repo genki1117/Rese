@@ -1,4 +1,4 @@
-@extends('default.guest_layouts')
+@extends('default.user_layouts')
 @section('title','Index')
 @section('content')
 
@@ -33,7 +33,7 @@
                 <div class="reservation_date_time">
                     <select type="time" name="time" class="time_input">
                         @foreach(config('time') as $key => $score)
-                        <option value="{{ $key }}">{{ $score }}</option>
+                        <option value="{{ $score }}">{{ $score }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,6 +44,9 @@
                         @endforeach
                     </select>
                 </div>
+                <input type="hidden" name="shop_id" value="{{$shop->id}}">
+                <input type="hidden" name="area_id" value="{{$shop->area_id}}">
+                <input type="hidden" name="genre_id" value="{{$shop->genre_id}}">
             </form>
             <div class="resevation_confirm">
                 <table class="resevation_confirm_table">
@@ -80,6 +83,7 @@
 
     .shop_intro{
         width: 45%;
+        margin-top:-20px;
     }
 
     .shop_intro_img{
@@ -92,7 +96,7 @@
 
     .shop_intro_header{
         display:flex;
-        margin: 30px 0 20px 0;
+        margin: 10px 0 20px 0;
     }
 
     .shop_intro_header_icon{
@@ -126,7 +130,7 @@
         padding:40px 30px 150px 30px;
         background:#305dff;
         position:relative;
-        top:-49px;
+        top:-90px;
         border-radius:5px 5px 0 0;
     }
 
@@ -172,9 +176,8 @@
         text-align:center;
         width: 100%;
         background:blue;
-        margin-top:-50px;
+        margin-top:-90px;
         border-radius:0 0 5px 5px;
-        
     }
 
     .resevation_btn button{
@@ -185,6 +188,7 @@
         padding:20px 0;
         width: 100%;
         border-radius:0 0 5px 5px;
+        cursor:pointer;
     }
 
 </style>

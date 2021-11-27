@@ -7,7 +7,7 @@
     </div>
     <div class="login_content_input">
         <div class="login_btn">
-            <a href="/user/mypage">ログインする</a>
+            <a href="/login">ログインする</a>
         </div>
     </div>
 </div>

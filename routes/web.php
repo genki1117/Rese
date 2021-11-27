@@ -7,20 +7,22 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
 
 
-Route::get('/',[IndexController::class,'index']);
-Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
-Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create']);
-// Route::get('/detail/:shop_id/{shop}',function(){
-//     return 'gogoggo';
-// });
-
 
 Route::get('/register',[RegisterController::class,'store']);
-Route::post('/thanks',[RegisterController::class,'create']);
+Route::post('/register',[RegisterController::class,'create'])->name('registration');
 Route::get('/thanks',[RegisterController::class,'add'])->name('thanks');
 
-Route::get('/login',[LoginController::class,'index'])->name('login');
-Route::post('/login',[LoginController::class,'checkUser']);
+
+Route::get('/login',[LoginController::class,'index']);
+Route::post('/login',[LoginController::class,'checkUser'])->name('login');
+
+Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home');
+Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
+Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
+
+
+
+
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
 Route::post('/logout',[MyPageController::class,'destroy'])->middleware('auth')->name('logout');

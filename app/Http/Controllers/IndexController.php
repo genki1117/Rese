@@ -42,9 +42,14 @@ class IndexController extends Controller
         $number_of_people = ['number_of_people' => (int)$people_number];
 
         $content = $user_id + $shop_id + $started_at + $number_of_people;
-        // Reservation::create($content);
+        Reservation::create($content);
         // $datas = Reservation::all();
-        // return view('user.mypage',compact('$datas'));
-        var_dump($content);
+        return redirect('/done');
+        // var_dump($content);
+    }
+
+    public function done()
+    {
+        return view('done');
     }
 }

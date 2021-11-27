@@ -19,6 +19,7 @@ Route::post('/login',[LoginController::class,'checkUser'])->name('login');
 Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home');
 Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
+Route::get('/done',[IndexController::class,'done']);
 
 
 

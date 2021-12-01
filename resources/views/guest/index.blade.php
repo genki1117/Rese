@@ -37,7 +37,20 @@
                 @csrf
                 <button class="detail_btn">詳しく見る</button>
             </form>
-            <div class="like_btn"><i class="fas fa-heart"></i></div>
+            
+            <div>
+                @if($like !== null)
+                <!-- いいね解除 -->
+                    <a href="{{ route('unlike',$shop)}}" class="btn-success">
+                        <div class="like_btn"><i class="far fa-heart btn-secondary"></i></div>
+                    </a>
+                @else
+                <!-- いいね -->
+                <a href="{{route('like',$shop)}}" class="btn-secondary">
+                    <div class="like_btn"><i class="far fa-heart btn-successfully"></i></div>
+                </a>
+                @endif
+            </div>
         </div>
     </div>
     @endforeach
@@ -45,6 +58,14 @@
 
 <style>
 
+
+    .btn-secondary{
+        color:red;
+    }
+
+    .btn-successfully{
+        color:black;
+    }
     .search_content{
         display: inline-block;
         width: 47%;

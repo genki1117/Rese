@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shop;
 
 class Reservation extends Model
 {
@@ -22,6 +23,13 @@ class Reservation extends Model
         'area_id' => 'int',
         'number_of_people' =>'int'
     ];
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class,'shop_id');
+    }
+
+    protected $dates = ['started_at'];
 
 
 }

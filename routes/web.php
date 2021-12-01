@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LikeController;
 
 
 
@@ -16,18 +17,20 @@ Route::get('/thanks',[RegisterController::class,'add'])->name('thanks');
 Route::get('/login',[LoginController::class,'index']);
 Route::post('/login',[LoginController::class,'checkUser'])->name('login');
 
+
 Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home');
 Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
 Route::get('/done',[IndexController::class,'done']);
 
 
-
-
-
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
 Route::post('/logout',[MyPageController::class,'destroy'])->middleware('auth')->name('logout');
+Route::post('/delete',[MyPageController::class,'delete'])->middleware('auth')->name('delete');
 
+
+Route::get('/like/{shop}',[LikeController::class,'like'])->name('like');
+Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->name('unlike');
 
 
 

@@ -48,26 +48,29 @@
                 <input type="hidden" name="area_id" value="{{$shop->area_id}}">
                 <input type="hidden" name="genre_id" value="{{$shop->genre_id}}">
             </form>
+            @foreach($reservations as $reservation)
             <div class="resevation_confirm">
                 <table class="resevation_confirm_table">
                     <tr class="resevation_confirm_tr">
                         <th>Shop</th>
-                        <td>{{ $shop->name }}</td>
+                        <td>{{ optional($reservation->shop)->name }}</td>
+
                     </tr>
                     <tr>
                         <th>Date</th>
-                        <td>2021-1-1</td>
+                        <td>{{$reservation->started_at->format('Y/m/d')}}</td>
                     </tr>
                     <tr>
                         <th>Time</th>
-                        <td>17:00</td>
+                        <td>{{$reservation->started_at->format('H:i')}}</td>
                     </tr>
                     <tr>
                         <th>Number</th>
-                        <td>1</td>
+                        <td>{{$reservation->number_of_people}}人:id{{$reservation->user_id}}</td>
                     </tr>
                 </table>
             </div>
+            @endforeach
         </div>
         <div class="resevation_btn">
             <button form="resevation_contents" formaction="/detail/:shop_id/{shop}" formmethod="post">予約する</button>

@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Modesl\Like;
+use App\Models\Reservation;
 
 class Shop extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+
+    ];
 
     public function area()
     {
@@ -19,5 +23,15 @@ class Shop extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class,('genre_id'));
+    }
+
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class,'shop_id');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class,'shop_id');
     }
 }

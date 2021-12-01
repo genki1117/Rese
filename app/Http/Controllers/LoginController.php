@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function checkUser(Request $request)
     {
+
         //バリデーション
         $request->validate([
             'email' => ['required', 'string', 'email'],
@@ -29,7 +30,7 @@ class LoginController extends Controller
             'password' => $password])){
             return redirect('/mypage');
         }else{
-            return view('/login');
+            return redirect('/login');
         }
     }
 }

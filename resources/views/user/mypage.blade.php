@@ -6,28 +6,36 @@
     <div class="mypage_name">{{$user->name}}さん</div>
     @endif
     <div class="mypage_content flex-item">
-
         <div class="reserve_status">
             <h3>予約状況</h3>
+            @foreach($reservations as $reservation)
             <div class="reserve_status_cd">
                 <i class="far fa-clock cd_icon"></i>
+                <form action="/delete" method="post" name="form1">
+                    @csrf
+                        <input type="hidden" name="id" value="{{ $reservation->id }}">
+                            <a href="javascript:form1.submit()"><i class="far fa-times-circle delete_icon"></i></a>
+                    </form>
                 <div>予約</div>
-                <a href=""><i class="far fa-times-circle delete_icon"></i></a>
                 <table class="status_table">
                     <tr>
-                        <th>shop</th><td>仙人</td>
+                        <th>shop</th><td>{{ optional($reservation->shop)->name }}</td>
                     </tr>
                     <tr>
-                        <th>date</th><td>2021-01-01</td>
+                        <th>date</th><td>{{$reservation->started_at->format('Y/m/d')}}</td>
                     </tr>
                     <tr>
-                        <th>time</th><td>17:00</td>
+                        <th>time</th><td>{{$reservation->started_at->format('H:i')}}</td>
                     </tr>
                     <tr>
-                        <th>number</th><td>1人</td>
+                        <th>number</th><td>{{$reservation->number_of_people}}人</td>
+                    </tr>
+                    <tr>
+                        <th></th><td>{{$reservation->user_id}}</td>
                     </tr>
                 </table>
             </div>
+            @endforeach
         </div>
 
         <div class="like_shops_status">
@@ -99,7 +107,6 @@
         background:#305dff;
         color:#fff;
         position:relative;
-        /* margin-right:40px; */
         box-shadow:4px 4px 5px 1px gray;
     }
 
@@ -110,6 +117,13 @@
         left:32px;
     }
 
+    .delete_icon{
+        font-size:20px;
+        top:25px;
+        right:25px;
+        color:#fff;
+    }
+
     .reserve_status_cd div{
         font-size:15px;
         position:absolute;
@@ -117,12 +131,7 @@
         left:100px;
     }
 
-    .delete_icon{
-        position:absolute;
-        font-size:20px;
-        top:25px;
-        right:25px;
-        color:#fff;
+    .delete_btn{
     }
 
     .status_table{
@@ -185,5 +194,10 @@
         margin: 20px 18px 10px 18px;
         font-size:30px;
         cursor:pointer;
+    }
+
+    .delete_btn button{
+        cursor:pointer;
+
     }
 </style>

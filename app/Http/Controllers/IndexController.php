@@ -10,6 +10,8 @@ use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
+
 
 class IndexController extends Controller
 {
@@ -17,12 +19,24 @@ class IndexController extends Controller
     {
 
         $shops = Shop::all();//DBのShopsテーブルをShopModelから取得
-        $area_id = Shop::orderBy('created_at','asc');
+        $area_id = Shop::orderBy('created_at','asc')->first();
         $genre_id = Shop::orderBy('create_at','asc');
-        // $like=Like::where('shop_id', $shop->id)->where('user_id', auth()->user()->id)->first();
-        // $like=Like::where('shop_id', auth()->user()->id)->first();
-        $like=Like::where('shop_id', auth()->user()->id)->first();//idが入ってるためnullではない
-        return view('guest.index',compact('shops','like'));
+        // $shop_id = Shop::find('ID');//ショップのIDを取得する！！！
+        // var_dump($shop_id,$user);
+        // $user_id = Like::where('user_id' , auth()->user()->id)->first();
+        // $shop_id = Like::where('$shop_id', auth()->user()->id)->first();
+        // $likes = Like::where('user_id', $user->id)->where('shop_id', $shops->id)->first();
+        // $likes = Like::where('user_id', $user->id)->where('shop_id', $shop_id)->first();
+
+        $shop_id = DB::table('shops')->where('id')->get();
+        var_dump($shop_id->id);
+        // $likes = Like::where('user_id', auth()->user()->id)->where('shop_id' , $shop_id)->first();
+
+        // $likes = Like::where('user_id', auth()->user()->id)->first();
+        // where('shop_id' , $shop_id)->first();
+        var_dump($likes);
+
+        return view('guest.index',compact('shops','likes'));
     }
 
     public function bind(Shop $shop)

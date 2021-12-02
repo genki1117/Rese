@@ -12,7 +12,10 @@ use App\Models\Reservation;
 class Shop extends Model
 {
     protected $fillable = [
-
+        'name',
+        'img_path',
+        'area_id',
+        'genre_id'
     ];
 
     public function area()
@@ -27,11 +30,11 @@ class Shop extends Model
 
     public function reservation()
     {
-        return $this->hasOne(Reservation::class,'shop_id');
+        return $this->hasOne(Reservation::class,('shop_id'));
     }
 
     public function likes()
     {
-        return $this->hasMany(Like::class,'shop_id');
+        return $this->hasMany(Like::class,('shop_id'));
     }
 }

@@ -15,6 +15,7 @@ class LikeController extends Controller
         $like = New like();
         $like->shop_id = $shop->id;
         $like->user_id = Auth::user()->id;
+
         $like->save();
         return back();
     }

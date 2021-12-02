@@ -37,9 +37,8 @@
                 @csrf
                 <button class="detail_btn">詳しく見る</button>
             </form>
-            
             <div>
-                @if($like !== null)
+                @if($likes !== null)
                 <!-- いいね解除 -->
                     <a href="{{ route('unlike',$shop)}}" class="btn-success">
                         <div class="like_btn"><i class="far fa-heart btn-secondary"></i></div>

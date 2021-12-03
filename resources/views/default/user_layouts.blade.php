@@ -62,7 +62,7 @@
         .header_content{
         }
 
-        .main_content{        
+        .main_content{
             padding: 30px 100px 0 100px;
         }
 

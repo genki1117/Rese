@@ -13,13 +13,13 @@
                 <i class="far fa-clock cd_icon"></i>
                 <form action="/delete" method="post" name="form1">
                     @csrf
-                        <input type="hidden" name="id" value="{{ $reservation->id }}">
-                            <a href="javascript:form1.submit()"><i class="far fa-times-circle delete_icon"></i></a>
-                    </form>
+                    <input type="hidden" name="id" value="{{ $reservation->id }}">
+                    <button type="submit" class="delete_icon"><i class="far fa-times-circle"></i></button>
+                </form>
                 <div>予約</div>
                 <table class="status_table">
                     <tr>
-                        <th>shop</th><td>{{ optional($reservation->shop)->name }}</td>
+                        <th>shop</th><td>{{ $reservation->shop->name }}</td>
                     </tr>
                     <tr>
                         <th>date</th><td>{{$reservation->started_at->format('Y/m/d')}}</td>
@@ -30,9 +30,6 @@
                     <tr>
                         <th>number</th><td>{{$reservation->number_of_people}}人</td>
                     </tr>
-                    <tr>
-                        <th></th><td>{{$reservation->user_id}}</td>
-                    </tr>
                 </table>
             </div>
             @endforeach
@@ -40,9 +37,27 @@
 
         <div class="like_shops_status">
             <h3>お気に入り店舗</h3>
-            <div class="like_shop_cd_status flex-item">
+            
+            
 
+            
+            <div class="like_shop_cd_status flex-item">
+                @foreach($likes as $like)
                 <div class="like_shop_cd">
+                    <img src="{{$like->shop->img_path}}" alt="仙人">
+                    <div class="like_shop_cd_header">{{$like->shop->name}}</div>
+                    <div class="like_shop_cd_tag">
+                        <span>#{{$like->shop->area->name}}</span>
+                        <span>#{{$like->shop->genre->name
+                            }}</span>
+                    </div>
+                    <div class="like_shop_cd_btn flex-item">
+                        <button class="detail_btn">詳しく見る</button>
+                        <div class="like_btn"><i class="fas fa-heart"></i></div>
+                    </div>
+                </div>
+                @endforeach
+                <!-- <div class="like_shop_cd">
                     <img src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="仙人">
                     <div class="like_shop_cd_header">仙人</div>
                     <div class="like_shop_cd_tag">
@@ -53,24 +68,12 @@
                         <button class="detail_btn">詳しく見る</button>
                         <div class="like_btn"><i class="fas fa-heart"></i></div>
                     </div>
-                </div>
-                <div class="like_shop_cd">
-                    <img src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="仙人">
-                    <div class="like_shop_cd_header">仙人</div>
-                    <div class="like_shop_cd_tag">
-                        <span>#東京都</span>
-                        <span>#焼肉</span>
-                    </div>
-                    <div class="like_shop_cd_btn flex-item">
-                        <button class="detail_btn">詳しく見る</button>
-                        <div class="like_btn"><i class="fas fa-heart"></i></div>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </div>
-@endsection
+
 <style>
 
     .mypage{
@@ -103,11 +106,11 @@
 
     .reserve_status_cd{
         width: 75%;
-        height: 60%;
         background:#305dff;
         color:#fff;
         position:relative;
         box-shadow:4px 4px 5px 1px gray;
+        margin-bottom:17px;
     }
 
     .cd_icon{
@@ -118,7 +121,7 @@
     }
 
     .delete_icon{
-        font-size:20px;
+        font-size:24px;
         top:25px;
         right:25px;
         color:#fff;
@@ -200,4 +203,16 @@
         cursor:pointer;
 
     }
+
+    .reserve_status_cd button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        appearance: none;
+        position:absolute;
+}
+
 </style>
+@endsection

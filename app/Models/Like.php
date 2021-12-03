@@ -9,7 +9,10 @@ use App\Models\Shop;
 
 class Like extends Model
 {
-    protected $fillable = ['user_id','shop_id'];
+    protected $fillable = [
+        'user_id',
+        'shop_id'
+    ];
 
     public function user()
     {

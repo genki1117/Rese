@@ -19,8 +19,8 @@ class IndexController extends Controller
     {
 
         $shops = Shop::all();//DBのShopsテーブルをShopModelから取得
-        $area_id = Shop::orderBy('created_at','asc')->first();
-        $genre_id = Shop::orderBy('create_at','asc');
+        // $area_id = Shop::orderBy('created_at','asc')->first();
+        // $genre_id = Shop::orderBy('create_at','asc');
         // $shop_id = Shop::find('ID');//ショップのIDを取得する！！！
         // var_dump($shop_id,$user);
         // $user_id = Like::where('user_id' , auth()->user()->id)->first();
@@ -28,13 +28,18 @@ class IndexController extends Controller
         // $likes = Like::where('user_id', $user->id)->where('shop_id', $shops->id)->first();
         // $likes = Like::where('user_id', $user->id)->where('shop_id', $shop_id)->first();
 
-        $shop_id = DB::table('shops')->where('id')->get();
-        var_dump($shop_id->id);
+        // $shop_id = Like::with('Shop')->first();
+        // // $shop_id = $user->id;
+        // var_dump($shop_id);
+        // $shop_id = Like::select('shop_id')->get();
         // $likes = Like::where('user_id', auth()->user()->id)->where('shop_id' , $shop_id)->first();
-
-        // $likes = Like::where('user_id', auth()->user()->id)->first();
+        
+        // var_dump($shop_id);
+        $user_id = Like::select('user_id')->get();
+        $shop_id = Like::select('shop_id')->get();
+        $likes = Like::where('user_id', auth()->user()->id)->first();
+        \Debugbar::info($likes);
         // where('shop_id' , $shop_id)->first();
-        var_dump($likes);
 
         return view('guest.index',compact('shops','likes'));
     }

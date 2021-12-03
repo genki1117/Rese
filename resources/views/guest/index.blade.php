@@ -1,4 +1,4 @@
-@extends('default.guest_layouts')
+@extends('default.user_layouts')
 @section('title','Index')
 @section('content')
 <!-- 検索 -->
@@ -37,19 +37,18 @@
                 @csrf
                 <button class="detail_btn">詳しく見る</button>
             </form>
-            <div>
-                @if($likes !== null)
-                <!-- いいね解除 -->
-                    <a href="{{ route('unlike',$shop)}}" class="btn-success">
-                        <div class="like_btn"><i class="far fa-heart btn-secondary"></i></div>
-                    </a>
-                @else
-                <!-- いいね -->
-                <a href="{{route('like',$shop)}}" class="btn-secondary">
-                    <div class="like_btn"><i class="far fa-heart btn-successfully"></i></div>
+
+            @if($likes !== null)
+            <!-- いいね解除 -->
+                <a href="{{ route('unlike',$shop)}}" class="btn-success">
+                    <div class="like_btn"><i class="far fa-heart btn-secondary"></i></div>
                 </a>
-                @endif
-            </div>
+            @else
+            <!-- いいね -->
+            <a href="{{route('like',$shop)}}" class="btn-secondary">
+                <div class="like_btn"><i class="far fa-heart btn-successfully"></i></div>
+            </a>
+            @endif
         </div>
     </div>
     @endforeach
@@ -110,6 +109,8 @@
     .flex-item{
         display:flex;
         flex-wrap:wrap;
+        justify-content:space-between;
+        align-items:center;
     }
 
     .like_shops_status{
@@ -161,6 +162,4 @@
         cursor:pointer;
     }
 </style>
-
-
 @endsection

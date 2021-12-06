@@ -8,10 +8,13 @@ use App\Models\Shop;
 
 class Area extends Model
 {
-    use HasFactory;
+
+    protected $fillable = [
+        'name'
+    ];
 
     public function shop()
     {
-        return $this->hasOne(Shop::class,'area_id');
+        return $this->hasOne('App\Modesl\Shop');
     }
 }

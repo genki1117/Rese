@@ -20,21 +20,21 @@ class Shop extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class,('area_id'));
+        return $this->belongsTo(Area::class);
     }
 
     public function genre()
     {
-        return $this->belongsTo(Genre::class,('genre_id'));
+        return $this->belongsTo(Genre::class);
     }
 
     public function reservation()
     {
-        return $this->hasOne(Reservation::class,('shop_id'));
+        return $this->belongsTo(Reservation::class,('shop_id'));
     }
 
     public function likes()
     {
-        return $this->hasMany(Like::class,('shop_id'));
+        return $this->belongsTo(Like::class,('shop_id'));
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\SearchController;
 
 
 
@@ -22,6 +23,7 @@ Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home
 Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
 Route::get('/done',[IndexController::class,'done']);
+// Route::post('search' , [IndexController::class,'search']);
 
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
@@ -31,6 +33,10 @@ Route::post('/delete',[MyPageController::class,'delete'])->middleware('auth')->n
 
 Route::get('/like/{shop}',[LikeController::class,'like'])->name('like');
 Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->name('unlike');
+
+
+Route::post('/',[SearchController::class,'search'])->middleware('auth');
+
 
 
 

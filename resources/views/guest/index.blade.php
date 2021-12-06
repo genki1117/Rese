@@ -4,20 +4,24 @@
 <!-- 検索 -->
 
     <div class="search_content">
-        <form action="" method="post">
+        <form action="/" method="post">
             @csrf
             <!-- 検索エリア -->
-            <select name="" id="" class="area_pull search_item">
-                <option value="">test1</option>
+            <select type="text" name="area_word" id="" class="area_pull search_item">
+                @foreach(config('area') as $key => $value)
+                <option value="{{ $value }}">{{ $value }}</option>
+                @endforeach
             </select>
 
             <!-- 検索ジャンル -->
-            <select name="" id="" class="genre_pull search_item">
-                <option value="">test</option>
+            <select type="text" name="genre_word" id="" class="genre_pull search_item">
+                @foreach(config('genre') as $key => $value)
+                <option value="{{ $value }}">{{ $value }}</option>
+                @endforeach
             </select>
 
             <!-- 検索名前 -->
-            <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="" class="search_text_box" value="search...">
+            <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="name_word" class="search_text_box" >
         </form>
     </div>
     
@@ -26,29 +30,35 @@
 <div class="index_content flex-item">
     @foreach($shops as $shop)
     <div class="like_shop_cd">
-        <img src="{{$shop->img_path}}" alt="{{$shop->name}}">
-        <div class="like_shop_cd_header">{{$shop->name}}</div>
-        <div class="like_shop_cd_tag">
-            <span>#{{optional($shop->area)->name}}</span>
-            <span>#{{optional($shop->genre)->name}}</span>
-        </div>
-        <div class="like_shop_cd_btn flex-item">
-            <form action="/detail/:shop_id/{{$shop->id}}" method="get">
-                @csrf
-                <button class="detail_btn">詳しく見る</button>
-            </form>
+        <div class="like_shop_cd_content">
+            <img src="{{$shop->img_path}}" alt="{{$shop->name}}">
+            <div class="like_shop_cd_header">{{$shop->name}}</div>
+            <div class="like_shop_cd_tag">
+                <span>#{{ $shop->area->name }}</span>
+                <span>#{{ $shop->genre->name }}</span>
 
-            @if($likes !== null)
-            <!-- いいね解除 -->
-                <a href="{{ route('unlike',$shop)}}" class="btn-success">
-                    <div class="like_btn"><i class="far fa-heart btn-secondary"></i></div>
-                </a>
-            @else
-            <!-- いいね -->
-            <a href="{{route('like',$shop)}}" class="btn-secondary">
-                <div class="like_btn"><i class="far fa-heart btn-successfully"></i></div>
-            </a>
-            @endif
+            </div>
+            <div class="like_shop_cd_btn flex-item">
+                <form action="/detail/:shop_id/{{$shop->id}}" method="get">
+                    @csrf
+                    <button class="detail_btn">詳しく見る</button>
+                </form>
+
+                <span>
+                    @if($likes->whereIn('shop_id' , $shop->id)->isEmpty())
+                    <!-- いいね -->
+                    <a href="{{route('like',$shop)}}" class="btn-successfully">
+                        <i class="far fa-heart like_btn"></i>
+                    </a>
+                    @else
+                    <!-- いいね解除 -->
+                    <a href="{{ route('unlike',$shop)}}" class="btn-secondary">
+                        <i class="far fa-heart like_btn"></i>
+                    </a>
+                    @endif
+                </span>
+
+            </div>
         </div>
     </div>
     @endforeach

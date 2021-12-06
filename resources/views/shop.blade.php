@@ -48,7 +48,7 @@
                 <input type="hidden" name="area_id" value="{{$shop->area_id}}">
                 <input type="hidden" name="genre_id" value="{{$shop->genre_id}}">
             </form>
-            @foreach($reservations as $reservation)
+            <!-- @foreach($reservations as $reservation)
             <div class="resevation_confirm">
                 <table class="resevation_confirm_table">
                     <tr class="resevation_confirm_tr">
@@ -70,7 +70,7 @@
                     </tr>
                 </table>
             </div>
-            @endforeach
+            @endforeach -->
         </div>
         <div class="resevation_btn">
             <button form="resevation_contents" formaction="/detail/:shop_id/{shop}" formmethod="post">予約する</button>

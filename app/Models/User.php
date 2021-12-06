@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Like;
+use App\Models\Reservation;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class,'user_id');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class('user_id'));
     }
 }

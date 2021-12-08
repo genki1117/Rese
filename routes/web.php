@@ -10,8 +10,8 @@ use App\Http\Controllers\SearchController;
 
 
 
-Route::get('/register',[RegisterController::class,'store']);
-Route::post('/register',[RegisterController::class,'create'])->name('registration');
+Route::get('/register',[RegisterController::class,'store'])->name('register');
+Route::post('/register',[RegisterController::class,'create']);
 Route::get('/thanks',[RegisterController::class,'add'])->name('thanks');
 
 
@@ -33,6 +33,7 @@ Route::post('/delete',[MyPageController::class,'delete'])->middleware('auth')->n
 
 Route::get('/like/{shop}',[LikeController::class,'like'])->name('like');
 Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->name('unlike');
+Route::post('like/delete' , [LikeController::class , 'delete']);
 
 
 Route::post('/',[SearchController::class,'search'])->middleware('auth');

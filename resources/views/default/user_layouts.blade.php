@@ -9,10 +9,12 @@
 </head>
     <body>
         <div class="main_content">
-
             <div class="header_content">
                 <!-- --↓ハンバーガメニュー↓-- -->
                 <div class="h-menu">
+                    <div class="logo">
+                    <h2>Rest</h2>
+                </div>
                     <nav class="nav" id="nav">
                         <ul>
                             <!-- --↓メニュー中身↓-- -->
@@ -23,7 +25,7 @@
                                 <button class="logout_btn">Logout</button>
                             </form>
 
-                            <li><a href="#">Mypage</a></li>
+                            <li><a href="mypage">Mypage</a></li>
                         </ul>
                     </nav>
                     <div class="menu" id="menu">
@@ -32,9 +34,29 @@
                         <span class="menu__line--bottom"></span>
                     </div>
                 </div>
-                <div class="logo">
-                    <h2>Rest</h2>
+
+                <div class="search_content" id="search_content">
+                    <form action="/" method="post">
+                        @csrf
+                        <!-- 検索エリア -->
+                        <select type="text" name="area_word" id="" class="area_pull search_item">
+                            @foreach(config('area') as $key => $value)
+                            <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+
+                        <!-- 検索ジャンル -->
+                        <select type="text" name="genre_word" id="" class="genre_pull search_item">
+                            @foreach(config('genre') as $key => $value)
+                            <option value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+
+                        <!-- 検索名前 -->
+                        <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="name_word" class="search_text_box" >
+                    </form>
                 </div>
+
             </div>
             @yield('content')
         </div>
@@ -60,24 +82,24 @@
         }
 
         .header_content{
+
         }
 
         .main_content{
+            max-width:1300px;
             padding: 30px 100px 0 100px;
         }
 
         .logo{
-            position:relative;
+            display:inline-block;
             width:10px;
-            top:-45px;
-            left:90px;
         }
 
         .logo h2{
-            display:inline-block;
             font-size:30px;
             color:#305dff;
             font-weight:900;
+            margin-left:100px;
         }
 
     /* --↓ハンバーガメニュー↓-- */
@@ -180,5 +202,43 @@
         .in{
             transform: translateX(100%);
         }
+
+        .search_content{
+        display: inline-block;
+        width: 615px;
+        background:#fff;
+        padding:5px;
+        box-shadow:4px 4px 5px 1px gray;
+        position:relative;
+        left:52%;
+        top:-45px;
+        border-radius:5px;
+        margin-top:-10px;
+    }
+
+    .search_item{
+        width: 15%;
+        border-top:none;
+        border-left:none;
+        border-right:2px solid lightgray;
+        border-bottom:none;
+        color:gray;
+        font-size:15px;
+        padding:10px 40px 10px 0px;
+    }
+
+    .search_text_box{
+        width: 65%;
+        height:100%;
+        font-size:20px;
+        color:gray;
+        border:none;
+    }
+
+    .search_icon{
+        font-size:15px;
+        margin-right:2px;
+        color:gray;
+    }
     </style>
 </html>

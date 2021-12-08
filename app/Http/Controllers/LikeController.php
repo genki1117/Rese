@@ -27,4 +27,10 @@ class LikeController extends Controller
         $like->delete();
         return back();
     }
+
+    public function delete(Request $request)
+    {
+        Like::find($request->id)->delete();
+        return redirect('/mypage');
+    }
 }

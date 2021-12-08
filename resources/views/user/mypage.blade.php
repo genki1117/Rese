@@ -47,27 +47,19 @@
                         <span>#{{$like->shop->genre->name}}</span>
                     </div>
                     <div class="like_shop_cd_btn flex-item">
-                        <form action="/detail/:shop_id/{{$like->shop->id}}" method=#get>
+                        <form action="/detail/:shop_id/{{$like->shop->id}}" method=get>
                         @csrf
                             <button class="detail_btn">詳しく見る</button>
                         </form>
-                        <div class="like_btn"><i class="fas fa-heart"></i></div>
+
+                        <form action="/like/delete" method="post">
+                            @csrf
+                            <input type="text" name="id" value="{{ $like->id }}">
+                            <button><i class="fas fa-heart"></i></button>
+                        </form>
                     </div>
                 </div>
                 @endforeach
-
-                <!-- <div class="like_shop_cd">
-                    <img src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="仙人">
-                    <div class="like_shop_cd_header">仙人</div>
-                    <div class="like_shop_cd_tag">
-                        <span>#東京都</span>
-                        <span>#焼肉</span>
-                    </div>
-                    <div class="like_shop_cd_btn flex-item">
-                        <button class="detail_btn">詳しく見る</button>
-                        <div class="like_btn"><i class="fas fa-heart"></i></div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -75,9 +67,6 @@
 
 <style>
 
-    .mypage{
-        /* margin: 0 11%; */
-    }
     .flex-item{
         display:flex;
         justify-content:space-between;
@@ -212,5 +201,8 @@
         position:absolute;
 }
 
+#search_content{
+    display:none;
+}
 </style>
 @endsection

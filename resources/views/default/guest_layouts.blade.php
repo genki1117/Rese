@@ -17,8 +17,8 @@
                         <ul>
                             <!-- --↓メニュー中身↓-- -->
                             <li><a href="/">Home</a></li>
-                            <li><a href="#">Registration</a></li>
-                            <li><a href="#">Login</a></li>
+                            <li><a href="/register">Registration</a></li>
+                            <li><a href="/login">Login</a></li>
                         </ul>
                     </nav>
                     <div class="menu" id="menu">
@@ -69,6 +69,7 @@
         }
 
         .main_content{
+            max-width:300px;
             padding: 30px 100px;
         }
 

@@ -28,17 +28,17 @@
             <form action="/detail/:shop_id/{shop}" method="post" id="resevation_contents">
                 @csrf
                 <div class="reservation_date">
-                    <input class="date_input" type="date" name="date">
+                    <input class="date_input" type="date" name="date" id="inputForm_date" onChange="inputCheckDate(this)">
                 </div>
                 <div class="reservation_date_time">
-                    <select type="time" name="time" class="time_input">
+                    <select type="time" name="time" class="time_input" id="inputForm_time" onChange="selectCheckTime(this)">
                         @foreach(config('time') as $key => $score)
                         <option value="{{ $score }}">{{ $score }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="reservation_date_number_of_people">
-                    <select type="num" name="number_of_people" class="number_of_people_input">
+                    <select type="num" name="number_of_people" class="number_of_people_input" id="inputForm_number" onChange="numberCheckPeople(this)">
                         @foreach(config('people_of_number') as $key =>$result)
                         <option value="{{ $key }}">{{ $result }}</option>
                         @endforeach
@@ -48,35 +48,52 @@
                 <input type="hidden" name="area_id" value="{{$shop->area_id}}">
                 <input type="hidden" name="genre_id" value="{{$shop->genre_id}}">
             </form>
-            <!-- @foreach($reservations as $reservation)
             <div class="resevation_confirm">
                 <table class="resevation_confirm_table">
                     <tr class="resevation_confirm_tr">
                         <th>Shop</th>
-                        <td>{{ optional($reservation->shop)->name }}</td>
+                        <td>{{$shop->name}}</td>
 
                     </tr>
                     <tr>
                         <th>Date</th>
-                        <td>{{$reservation->started_at->format('Y/m/d')}}</td>
+                        <td id="check_date"></td>
                     </tr>
                     <tr>
                         <th>Time</th>
-                        <td>{{$reservation->started_at->format('H:i')}}</td>
+                        <td id="check_time"></td>
                     </tr>
                     <tr>
                         <th>Number</th>
-                        <td>{{$reservation->number_of_people}}人:id{{$reservation->user_id}}</td>
+                        <td id="check_number"></td>
                     </tr>
                 </table>
             </div>
-            @endforeach -->
         </div>
         <div class="resevation_btn">
             <button form="resevation_contents" formaction="/detail/:shop_id/{shop}" formmethod="post">予約する</button>
         </div>
     </div>
 </div>
+
+<script>
+
+    function inputCheckDate() {
+        const inputValue = document.getElementById( "inputForm_date" ).value;
+        document.getElementById( "check_date" ).innerHTML = inputValue;
+    }
+
+    function selectCheckTime(){
+        const inputValue = document.getElementById( "inputForm_time" ).value;
+        document.getElementById( "check_time" ).innerHTML = inputValue;
+    }
+
+    function numberCheckPeople(){
+        const inputValue = document.getElementById( "inputForm_number" ).value;
+        document.getElementById( "check_number" ).innerHTML = inputValue;
+    }
+
+</script>
 
 <style>
     .shop_page_content{
@@ -193,8 +210,8 @@
         border-radius:0 0 5px 5px;
         cursor:pointer;
     }
-
 </style>
+
 
 
 @endsection

@@ -37,7 +37,7 @@
 
         <div class="like_shops_status">
             <h3>お気に入り店舗</h3>
-            <div class="like_shop_cd_status flex-item">
+            <div class="like_shop_cd_status">
                 @foreach($likes as $like)
                 <div class="like_shop_cd">
                     <img src="{{$like->shop->img_path}}" alt="仙人">
@@ -54,8 +54,8 @@
 
                         <form action="/like/delete" method="post">
                             @csrf
-                            <input type="text" name="id" value="{{ $like->id }}">
-                            <button><i class="fas fa-heart"></i></button>
+                            <input type="hidden" name="id" value="{{ $like->id }}">
+                            <button class="mypage_like_btn"><i class="far fa-heart"></i></button>
                         </form>
                     </div>
                 </div>
@@ -67,9 +67,12 @@
 
 <style>
 
+    .mypage{
+        width:100%;
+    }
+
     .flex-item{
-        display:flex;
-        justify-content:space-between;
+        
     }
 
     h3{
@@ -85,11 +88,11 @@
     .mypage_content{
         width:100%;
         display:flex;
-
+        justify-content:space-between;
     }
 
     .reserve_status{
-        width: 45%;
+        width: 80%;
     }
 
     .reserve_status_cd{
@@ -141,15 +144,19 @@
     }
 
     .like_shops_status{
-        width: 55%;
+        width: 100%;
     }
 
     .like_shop_cd_status{
+        display:flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
     }
 
     .like_shop_cd{
-        width: 50%;
-        margin-right:30px;
+        width: 45%;
+        margin-right:20px;
+        margin-bottom:30px;
         background:#fff;
         box-shadow:4px 4px 5px 1px gray;
     }
@@ -188,10 +195,13 @@
 
     .delete_btn button{
         cursor:pointer;
-
     }
 
-    .reserve_status_cd button{
+    .like_shop_cd_btn{
+        position:relative;
+    }
+
+    .reserve_status_cd button , .mypage_like_btn{
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -199,10 +209,22 @@
         padding: 0;
         appearance: none;
         position:absolute;
-}
+    }
 
-#search_content{
-    display:none;
-}
+    .mypage_like_btn{
+        top:20px;
+        right:25px;
+    }
+
+    .mypage_like_btn i{
+        font-size:35px;
+        color:red;
+    }
+
+
+
+    #search_content{
+        display:none;
+    }
 </style>
 @endsection

@@ -30,11 +30,11 @@ class Shop extends Model
 
     public function reservation()
     {
-        return $this->belongsTo(Reservation::class,('shop_id'));
+        return $this->hasMany(Reservation::class,('shop_id'));
     }
 
     public function likes()
     {
-        return $this->belongsTo(Like::class,('shop_id'));
+        return $this->hasMany(Like::class,('shop_id'));
     }
 }

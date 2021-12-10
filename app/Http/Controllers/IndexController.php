@@ -19,11 +19,18 @@ class IndexController extends Controller
 {
     public function index()//一覧ページ取得
     {
+        // $shops = Shop::with('likes')->get();//DBのShopsテーブルをShopModelから取得
+        // $user = Auth::user();
+        // // \Debugbar::info($shops);
+        // $likes = Like::where('user_id', $user->id)->where('shop_id' , )->get();
+        // return view('guest.index')->with(compact('shops' , 'likes'));
+
         $shops = Shop::all();//DBのShopsテーブルをShopModelから取得
         $user = Auth::user();
         $likes = Like::where('user_id', $user->id)->get();
 
         return view('guest.index',compact('shops','likes'));
+
     }
 
     public function bind(Shop $shop)

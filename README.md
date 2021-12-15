@@ -41,7 +41,7 @@ Composer Setup 「Settings Check」
 ```bash
 $ cd /Applications/MAMP/htdocs/
 
-$ git clone https://github.com/kadukimochida/Rese-20210918mochida
+$ git clone https://github.com/genki1117/Rese.git
 
 $ cd Rese-20210918mochida
 

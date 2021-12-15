@@ -18,18 +18,42 @@
                 </form>
                 <div>予約</div>
                 <table class="status_table">
+                    <form action="/mypage" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$reservation->id}}">
                     <tr>
                         <th>shop</th><td>{{ $reservation->shop->name }}</td>
                     </tr>
                     <tr>
-                        <th>date</th><td>{{$reservation->started_at->format('Y/m/d')}}</td>
+                        <th>date</th>
+                        <td>{{$reservation->started_at->format('Y/m/d')}}</td>
+                        <td>⇨</td>
+                        <td><input type="date" name="date" class="date_change_input"></td>
                     </tr>
                     <tr>
                         <th>time</th><td>{{$reservation->started_at->format('H:i')}}</td>
+                        <td>⇨</td>
+                        <td><select type="time" name="time" class="time_change_input" id="" >
+                        @foreach(config('time') as $key => $score)
+                        <option value="{{ $score }}">{{ $score }}</option>
+                        @endforeach
+                    </select></td>
                     </tr>
                     <tr>
                         <th>number</th><td>{{$reservation->number_of_people}}人</td>
+                        <td>⇨</td>
+                        <td><select type="num" name="number_of_people" class="number_change_select" id="">
+                        @foreach(config('people_of_number') as $key =>$result)
+                        <option value="{{ $key }}">{{ $result }}</option>
+                        @endforeach
+                    </select></td>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td><button class="change_btn">変更</button></td>
+                    </tr>
+                    </form>
                 </table>
             </div>
             @endforeach
@@ -69,10 +93,6 @@
 
     .mypage{
         width:100%;
-    }
-
-    .flex-item{
-        
     }
 
     h3{
@@ -130,7 +150,7 @@
 
     .status_table{
         color:#fff;
-        padding:65px 15px 20px 15px;
+        padding:65px 15px 30px 15px;
     }
 
     .status_table th{
@@ -221,10 +241,27 @@
         color:red;
     }
 
-
-
     #search_content{
         display:none;
+    }
+
+    input.date_change_input{
+        width: 100%;
+        height: 20px;
+        font-size:5px;
+    }
+
+    select.number_change_select.time_change_input{
+        width: 100%;
+        height: 24px;
+        font-size:1px;
+    }
+
+    button.change_btn{
+        background:#fff;
+        padding:1px 15px;
+        border-radius:5px;
+        margin-left:25%;
     }
 </style>
 @endsection

@@ -18,11 +18,10 @@
                     @csrf
                     <button class="detail_btn">詳しく見る</button>
                 </form>
-
                 <span>
-                    @if($likes->whereIn('shop_id' , $shop->id)->isEmpty())
+                    @if($shop->likes->isEmpty())
                     <!-- いいね -->
-                    <a href="{{route('like',$shop)}}" class="btn-successfully">
+                    <a href="{{ route('like',$shop)}}" class="btn-successfully">
                         <i class="far fa-heart like_btn"></i>
                     </a>
                     @else
@@ -32,7 +31,6 @@
                     </a>
                     @endif
                 </span>
-
             </div>
         </div>
     </div>

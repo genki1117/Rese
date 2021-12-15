@@ -28,13 +28,13 @@ class Shop extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    public function reservation()
+    public function reservations()
     {
         return $this->hasMany(Reservation::class,('shop_id'));
     }
 
     public function likes()
     {
-        return $this->hasMany(Like::class,('shop_id'));
+        return $this->hasMany(Like::class);
     }
 }

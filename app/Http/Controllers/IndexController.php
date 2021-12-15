@@ -8,8 +8,8 @@ use App\Models\Shop;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Like;
-use App\Models\genre;
-use App\Models\area;
+use App\Models\Genre;
+use App\Models\Area;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -19,17 +19,13 @@ class IndexController extends Controller
 {
     public function index()//一覧ページ取得
     {
-        // $shops = Shop::with('likes')->get();//DBのShopsテーブルをShopModelから取得
-        // $user = Auth::user();
-        // // \Debugbar::info($shops);
-        // $likes = Like::where('user_id', $user->id)->where('shop_id' , )->get();
-        // return view('guest.index')->with(compact('shops' , 'likes'));
-
-        $shops = Shop::all();//DBのShopsテーブルをShopModelから取得
+        $shops = Shop::with(['likes' => function($query){
+            $query->where('user_id' , Auth::id());
+        }])->get();
         $user = Auth::user();
-        $likes = Like::where('user_id', $user->id)->get();
-
-        return view('guest.index',compact('shops','likes'));
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('guest.index' , compact('shops' , 'user' , 'areas' , 'genres'));
 
     }
 

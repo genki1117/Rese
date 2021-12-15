@@ -38,4 +38,17 @@ class MyPageController extends Controller
         Reservation::find($request->id)->delete();
         return redirect('/mypage');
     }
+
+    public function update(Request $request)
+    {
+        $form = $request->all();
+        $forms = [
+            "id" => $request->id,
+            "started_at" => $request->date . ' ' . $request->time,
+            "number_of_people" => $request->number_of_people
+        ];
+        unset($forms['_token']);
+        Reservation::where('id' , $request->id)->update($forms);
+        return redirect('/mypage');
+    }
 }

@@ -84,10 +84,11 @@ class SearchController extends Controller
 
         $shops = Shop::where('name' , $name->name)->get();
 
-        return view('guest.index' , compact('likes' ,'shopss'));
+        return view('guest.index' , compact('likes' ,'shops'));
 
     }else{
         return view('guest.index' , compact('likes' , 'shops'));
     }
     }
+
 }

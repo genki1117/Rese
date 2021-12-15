@@ -27,6 +27,7 @@ Route::get('/done',[IndexController::class,'done']);
 
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
+Route::post('/mypage' , [MyPageController::class , 'update']);
 Route::post('/logout',[MyPageController::class,'destroy'])->middleware('auth')->name('logout');
 Route::post('/delete',[MyPageController::class,'delete'])->middleware('auth')->name('delete');
 

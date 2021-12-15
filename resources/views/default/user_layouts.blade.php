@@ -34,21 +34,21 @@
                         <span class="menu__line--bottom"></span>
                     </div>
                 </div>
-
+                <!-- 検索バー -->
                 <div class="search_content" id="search_content">
                     <form action="/" method="post">
                         @csrf
-                        <!-- 検索エリア -->
-                        <select type="text" name="area_word" id="" class="area_pull search_item">
-                            @foreach(config('area') as $key => $value)
-                            <option value="{{ $value }}">{{ $value }}</option>
+                        <!-- 検索エリア エリアコントローラーから出力する　-->
+                        <select type="text" name="area_word" id="" class="area_pull search_item" placeholder="Area">
+                            @foreach($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
                             @endforeach
                         </select>
 
                         <!-- 検索ジャンル -->
                         <select type="text" name="genre_word" id="" class="genre_pull search_item">
-                            @foreach(config('genre') as $key => $value)
-                            <option value="{{ $value }}">{{ $value }}</option>
+                            @foreach($genres as $genre)
+                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                             @endforeach
                         </select>
 

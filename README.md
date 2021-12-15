@@ -53,3 +53,42 @@ $ php artisan key:generate
 
 $ php artisan config:clear
 ```
+
+
+データベース設定(MySQL)
+
+```bash
+$ cd
+
+$ mysql -u root -p
+
+$ create database rese;
+```
+
+
+.envファイルの設定
+```bash
+APP_ENV=local
+
+APP_URL=http://localhost:8000
+
+DB_HOST=127.0.0.1
+
+DB_DATABASE=rese
+
+DB_USERNAME=root
+
+DB_PASSWORD=パスワード
+```
+
+データベース設定後
+```bash
+$ php artisan migrate
+
+$ php artisan db:seed
+
+$ php artisan serve
+```
+
+ブラウザでhttp://localhost:8000/　を開く
+

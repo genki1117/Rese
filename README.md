@@ -36,3 +36,20 @@ Composer Setup 「Settings Check」
 インストール画面まで「Next」を選択し、インストール画面では「Install」を選択します。
 
 その後「Finish」ボタンを押したらインストール完了です。
+
+#clone
+```bash
+$ cd /Applications/MAMP/htdocs/
+
+$ git clone https://github.com/kadukimochida/Rese-20210918mochida
+
+$ cd Rese-20210918mochida
+
+$ composer install
+
+$ cp .env.example .env
+
+$ php artisan key:generate
+
+$ php artisan config:clear
+```

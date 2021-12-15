@@ -7,7 +7,7 @@ Laravel Framework 8.72.0<br><br>
 Composer version 2.1.8<br><br>
 
 # インストール方法
-# composer<br>
+## composer<br>
 <a href="https://getcomposer.org/download/r">Mac</a><br>
 ↑こちらのページ下部にある Manual Download から2.○.○.の最新バージョンのリンクをクリックしてください。<br>
 ターミナルで Download ディレクトリに移動し以下のコマンドを実行します。<br><br>

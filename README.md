@@ -12,9 +12,12 @@ Composer version 2.1.8<br><br>
 ↑こちらのページ下部にある Manual Download から2.○.○.の最新バージョンのリンクをクリックしてください。<br>
 ターミナルで Download ディレクトリに移動し以下のコマンドを実行します。<br><br>
 
+```bash
 $ sudo mv composer.phar /usr/local/bin/composer
 
 $ chmod a+x /usr/local/bin/composer
+
+```
 
 
 <a href="https://getcomposer.org/doc/00-intro.md#installation-windows">Windowz</a><br>

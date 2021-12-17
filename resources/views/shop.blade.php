@@ -27,9 +27,15 @@
 
             <form action="/detail/:shop_id/{shop}" method="post" id="resevation_contents">
                 @csrf
+                @error('date')
+                <div class="date_error_message">{{$message}}</div>
+                @enderror
                 <div class="reservation_date">
                     <input class="date_input" type="date" name="date" id="inputForm_date" onChange="inputCheckDate(this)">
                 </div>
+                @error('time')
+                <div class="time_error_message">{{$message}}</div>
+                @enderror
                 <div class="reservation_date_time">
                     <select type="time" name="time" class="time_input" id="inputForm_time" onChange="selectCheckTime(this)">
                         @foreach(config('time') as $key => $score)
@@ -37,10 +43,13 @@
                         @endforeach
                     </select>
                 </div>
+                @error('number')
+                <div class="number_error_message">{{$message}}</div>
+                @enderror
                 <div class="reservation_date_number_of_people">
-                    <select type="num" name="number_of_people" class="number_of_people_input" id="inputForm_number" onChange="numberCheckPeople(this)">
+                    <select type="text" name="number" class="number_of_people_input" id="inputForm_number" onChange="numberCheckPeople(this)">
                         @foreach(config('people_of_number') as $key =>$result)
-                        <option value="{{ $key }}">{{ $result }}</option>
+                        <option value="{{ $result }}">{{ $result }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -96,6 +105,12 @@
 </script>
 
 <style>
+    .date_error_message,
+    .time_error_message,
+    .number_error_message{
+        color:red;
+    }
+
     .shop_page_content{
         display:flex;
         justify-content:space-between;

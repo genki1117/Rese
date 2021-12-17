@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class ReservationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,19 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required'
+            'date' => 'required',
+            'time' => 'required | date_format:H:i|',
+            'number' => 'integer | required'
         ];
     }
 
     public function messages()
     {
         return [
-            'email.required' => '※メールアドレスを入力してください',
-            'email.email' => '※メールアドレス形式で入力してください',
-            'password.required' => '※パスワードを入力してください'
+            'date.required' => '※日付を入力してください',
+            'time.date_format' => '※時間を選択してください',
+            'number.integer' => '※人数を選択してください'
         ];
+
     }
 }

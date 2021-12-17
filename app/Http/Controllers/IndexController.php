@@ -13,6 +13,7 @@ use App\Models\Area;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ReservationRequest;
 
 
 class IndexController extends Controller
@@ -36,14 +37,14 @@ class IndexController extends Controller
         $reservations = Reservation::where('shop_id',$shop_id)->get();
         return view('shop',compact('shop','reservations'));
     }
-    public function create(Request $request)//予約追加
+    public function create(ReservationRequest $request)//予約追加
     {
         $form = $request->all();
 
         $user_id = Auth::id();//user_id取得
         $shop_id = $request->shop_id;//shop_idを取得
         $start_at = $request->date . ' ' . $request->time;//日時と時間をDBの書式に整形しつつ取得
-        $number_of_people = $request->number_of_people;//nmber_of_peopleを取得
+        $number_of_people = $request->number;//nmber_of_peopleを取得
 
         $content = [
             'user_id' => $user_id,

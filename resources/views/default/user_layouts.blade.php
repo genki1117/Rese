@@ -34,28 +34,6 @@
                         <span class="menu__line--bottom"></span>
                     </div>
                 </div>
-                <!-- 検索バー -->
-                <div class="search_content" id="search_content">
-                    <form action="/" method="post">
-                        @csrf
-                        <!-- 検索エリア エリアコントローラーから出力する　-->
-                        <select type="text" name="area_word" id="" class="area_pull search_item" placeholder="Area">
-                            @foreach($areas as $area)
-                            <option value="{{ $area->id }}">{{ $area->name }}</option>
-                            @endforeach
-                        </select>
-
-                        <!-- 検索ジャンル -->
-                        <select type="text" name="genre_word" id="" class="genre_pull search_item">
-                            @foreach($genres as $genre)
-                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                            @endforeach
-                        </select>
-
-                        <!-- 検索名前 -->
-                        <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="name_word" class="search_text_box" >
-                    </form>
-                </div>
 
             </div>
             @yield('content')
@@ -92,7 +70,7 @@
 
         .logo{
             display:inline-block;
-            width:10px;
+            width:0px;
         }
 
         .logo h2{
@@ -202,43 +180,5 @@
         .in{
             transform: translateX(100%);
         }
-
-        .search_content{
-        display: inline-block;
-        width: 615px;
-        background:#fff;
-        padding:5px;
-        box-shadow:4px 4px 5px 1px gray;
-        position:relative;
-        left:52%;
-        top:-45px;
-        border-radius:5px;
-        margin-top:-10px;
-    }
-
-    .search_item{
-        width: 15%;
-        border-top:none;
-        border-left:none;
-        border-right:2px solid lightgray;
-        border-bottom:none;
-        color:gray;
-        font-size:15px;
-        padding:10px 40px 10px 0px;
-    }
-
-    .search_text_box{
-        width: 65%;
-        height:100%;
-        font-size:20px;
-        color:gray;
-        border:none;
-    }
-
-    .search_icon{
-        font-size:15px;
-        margin-right:2px;
-        color:gray;
-    }
     </style>
 </html>

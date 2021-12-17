@@ -2,6 +2,33 @@
 @section('title','Index')
 @section('content')
 
+<!-- 検索バー -->
+<div class="search_content" id="search_content">
+    <form action="/" method="post">
+    {{ Form::open(['url' => '/' , 'methos' => 'post' , 'files' => false]) }}
+        @csrf
+        <!-- 検索エリア 　-->
+        {{ Form::select('area_id' , App\Models\Area::selectlistAreas() ,old('area_id' , $areas) , ['class' => 'search_item'])}}
+        <!-- <select type="num" name="area_id" id="" class="area_pull search_item" placeholder="Area">
+            @foreach(config('area') as $key => $score)
+            <option value="{{ $key }}">{{ $score }}</option>
+            @endforeach
+        </select> -->
+
+        <!-- 検索ジャンル -->
+        {{ Form::select('genre_id' , App\models\Genre::selectlistGenres() , old('genre_id' , $genres) , ['class' => 'search_item'])}}
+        <!-- <select type="num" name="genre_id" id="" class="genre_pull search_item">
+            @foreach(config('genre') as $key => $score)
+            <option value="{{ $key }}">{{ $score }}</option>
+            @endforeach
+        </select> -->
+
+        <!-- 検索名前 -->
+        <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="name" class="search_text_box" value="{{ old('name') }}">
+    {{ Form::close() }}
+    </form>
+</div>
+
 <div class="index_content flex-item">
     @foreach($shops as $shop)
     <div class="like_shop_cd">
@@ -108,6 +135,44 @@
         margin: 10px 18px 10px 18px;
         font-size:30px;
         cursor:pointer;
+    }
+
+    .search_content{
+        display: inline-block;
+        width: 615px;
+        background:#fff;
+        padding:5px;
+        box-shadow:4px 4px 5px 1px gray;
+        position:relative;
+        left:52%;
+        top:-45px;
+        border-radius:5px;
+        margin-top:-10px;
+    }
+
+    .search_item{
+        width: 15%;
+        border-top:none;
+        border-left:none;
+        border-right:2px solid lightgray;
+        border-bottom:none;
+        color:gray;
+        font-size:15px;
+        padding:10px 40px 10px 0px;
+    }
+
+    .search_text_box{
+        width: 65%;
+        height:100%;
+        font-size:20px;
+        color:gray;
+        border:none;
+    }
+
+    .search_icon{
+        font-size:15px;
+        margin-right:2px;
+        color:gray;
     }
 </style>
 @endsection

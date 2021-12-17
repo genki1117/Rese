@@ -103,7 +103,6 @@
 
     .shop_intro{
         width: 45%;
-        margin-top:-20px;
     }
 
     .shop_intro_img{
@@ -146,10 +145,10 @@
     }
 
     .resevation_cd{
-        /* height: 100px; */
-        padding:40px 30px 150px 30px;
+        padding:40px 30px 80px 30px;
         background:#305dff;
         position:relative;
+        margin-top:50px;
         top:-90px;
         border-radius:5px 5px 0 0;
     }

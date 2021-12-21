@@ -177,7 +177,7 @@
         .logo{
             position:absolute;
             top:30px;
-            left:15%;
+            left:230px;
         }
 
         .logo h2{

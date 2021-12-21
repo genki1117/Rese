@@ -112,11 +112,11 @@
     }
 
     .reserve_status{
-        width: 80%;
+        margin-right:30px;
+        padding:0 30px;
     }
 
     .reserve_status_cd{
-        width: 75%;
         background:#305dff;
         color:#fff;
         position:relative;
@@ -145,9 +145,6 @@
         left:100px;
     }
 
-    .delete_btn{
-    }
-
     .status_table{
         color:#fff;
         padding:65px 15px 30px 15px;
@@ -164,7 +161,8 @@
     }
 
     .like_shops_status{
-        width: 100%;
+        margin-right:30px;
+        padding:0 30px;
     }
 
     .like_shop_cd_status{
@@ -174,7 +172,7 @@
     }
 
     .like_shop_cd{
-        width: 45%;
+        width: 280px;
         margin-right:20px;
         margin-bottom:30px;
         background:#fff;
@@ -249,12 +247,14 @@
         width: 100%;
         height: 20px;
         font-size:5px;
+        border:none;
     }
 
     select.number_change_select.time_change_input{
         width: 100%;
         height: 24px;
         font-size:1px;
+        border:none;
     }
 
     button.change_btn{
@@ -263,5 +263,34 @@
         border-radius:5px;
         margin-left:25%;
     }
+
+@media screen and (max-width: 768px){
+    .mypage_content{
+        display:block;
+    }
+
+    .reserve_status{
+        width:100%;
+    }
+    .like_shop_cd_status{
+        
+    }
+
+    .like_shops_status{
+        width:100%;
+    }
+
+    .like_shop_cd{
+        width:260px;
+    }
+
+    button.change_btn{
+        margin-left:18%;
+    }
+
+    .mypage_name{
+        width:100%;
+    }
+}
 </style>
 @endsection

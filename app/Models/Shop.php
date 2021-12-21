@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Like;
 use App\Models\Reservation;
+use App\Models\Review;
 
 class Shop extends Model
 {
@@ -36,5 +37,10 @@ class Shop extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

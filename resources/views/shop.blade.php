@@ -56,13 +56,11 @@
                 <input type="hidden" name="shop_id" value="{{$shop->id}}">
                 <input type="hidden" name="area_id" value="{{$shop->area_id}}">
                 <input type="hidden" name="genre_id" value="{{$shop->genre_id}}">
-            </form>
             <div class="resevation_confirm">
                 <table class="resevation_confirm_table">
                     <tr class="resevation_confirm_tr">
                         <th>Shop</th>
                         <td>{{$shop->name}}</td>
-
                     </tr>
                     <tr>
                         <th>Date</th>
@@ -80,7 +78,39 @@
             </div>
         </div>
         <div class="resevation_btn">
-            <button form="resevation_contents" formaction="/detail/:shop_id/{shop}" formmethod="post">予約する</button>
+            <button>予約する</button>
+        </div>
+        </form>
+    </div>
+</div>
+<div class="review_content">
+    <div class="reviews_content">
+        <div class="reviews_content_wrapper">
+            <table class="reviews_table">
+                <tr>
+                    <th class="reviews_th_name">投稿者</th>
+                    <th class="reviews_th_rating">評価</th>
+                    <th class="reviews_th_comment">コメント</th>
+                </tr>
+                @foreach($reviews as $review)
+                <tr>
+                    <td class="reviews_td_name">{{ $review->user->name }}</td>
+                    @if($review->review_number === 1)
+                    <td class="reviews_td_rating">☆</td>
+                    @elseif($review->review_number === 2)
+                    <td class="reviews_td_rating">☆☆</td>
+                    @elseif($review->review_number === 3)
+                    <td class="reviews_td_rating">☆☆☆</td>
+                    @elseif($review->review_number === 4)
+                    <td class="reviews_td_rating">☆☆☆☆</td>
+                    @elseif($review->review_number === 5)
+                    <td class="reviews_td_rating">☆☆☆☆☆</td>
+                    @endif
+                    <td class="reviews_td_comment">{{ $review->comment }}</td>
+                </tr>
+                @endforeach
+            </table>
+            {{ $reviews->links()}}
         </div>
     </div>
 </div>
@@ -105,6 +135,49 @@
 </script>
 
 <style>
+
+    .reviews_table{
+        border:1px solid;
+        width:100%;
+    }
+    svg.w-5.h-5 {
+    width: 30px;
+    height: 30px;
+    }
+
+    .review_content{
+        margin:20px 0px;
+    }
+    .reviews_content_wrapper{
+        padding:20px 30px;
+        background:#4D7FFF;
+        color:#fff;
+        width:100%;
+    }
+
+    th.reviews_th_name{
+        width: 15%;
+        text-align:center;
+        padding: 0;
+    }
+
+    th.reviews_th_rating{
+        width:10%;
+        padding: 0;
+        text-align:center;
+    }
+
+    th.reviews_th_comment,
+    td.reviews_td_comment{
+        padding: 0 0 0 30px;
+        width:75%;
+    }
+
+    td.reviews_td_name,
+    td.reviews_td_rating{
+        text-align:center;
+    }
+
     .date_error_message,
     .time_error_message,
     .number_error_message{
@@ -160,7 +233,7 @@
     }
 
     .resevation_cd{
-        padding:40px 30px 80px 30px;
+        padding:40px 30px 30px 30px;
         background:#305dff;
         position:relative;
         margin-top:50px;
@@ -224,6 +297,29 @@
         border-radius:0 0 5px 5px;
         cursor:pointer;
     }
+    @media screen and (max-width:768px){
+        .shop_page_content{
+            display:block;
+        }
+
+        .shop_intro{
+            width:100%;
+        }
+
+        .resevation_form{
+            width:100%;
+        }
+
+        .resevation_cd{
+            top:0;
+        }
+
+        .resevation_btn{
+            margin-top:0;
+            margin-bottom:50px;
+        }
+    }
+
 </style>
 
 

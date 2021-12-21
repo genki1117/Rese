@@ -10,6 +10,7 @@ use App\Models\Reservation;
 use App\Models\Like;
 use App\Models\Genre;
 use App\Models\Area;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,8 @@ class IndexController extends Controller
         $user = Auth::user();//Authからログインユーザーの情報を取得
         $shop_id = $shop->id;
         $reservations = Reservation::where('shop_id',$shop_id)->get();
-        return view('shop',compact('shop','reservations'));
+        $reviews = Review::Paginate(3);
+        return view('shop',compact('shop','reservations' , 'reviews'));
     }
     public function create(ReservationRequest $request)//予約追加
     {

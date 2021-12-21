@@ -8,15 +8,16 @@
     {{ Form::open(['url' => '/' , 'methos' => 'post' , 'files' => false]) }}
         @csrf
         <!-- 検索エリア 　-->
-        {{ Form::select('area_id' , App\Models\Area::selectlistAreas() ,old('area_id' , $areas) , ['class' => 'search_item'])}}
-        <!-- <select type="num" name="area_id" id="" class="area_pull search_item" placeholder="Area">
-            @foreach(config('area') as $key => $score)
-            <option value="{{ $key }}">{{ $score }}</option>
+        <!-- {{ Form::select('area_id' , App\Models\Area::selectlistAreas() ,null , ['class' => 'search_item' , 'placeholder' => 'Area'])}} -->
+        <select type="num" name="area_id" id="" class="area_pull search_item" >
+            <option value="">Area</option>
+        @foreach($areas as $area)
+            <option value="{{ $area->id }}">{{ $area->name }}</option>
             @endforeach
-        </select> -->
+        </select>
 
         <!-- 検索ジャンル -->
-        {{ Form::select('genre_id' , App\models\Genre::selectlistGenres() , old('genre_id' , $genres) , ['class' => 'search_item'])}}
+        {{ Form::select('genre_id' , App\models\Genre::selectlistGenres() , null , ['class' => 'search_item'])}}
         <!-- <select type="num" name="genre_id" id="" class="genre_pull search_item">
             @foreach(config('genre') as $key => $score)
             <option value="{{ $key }}">{{ $score }}</option>
@@ -44,6 +45,10 @@
                 <form action="/detail/:shop_id/{{$shop->id}}" method="get">
                     @csrf
                     <button class="detail_btn">詳しく見る</button>
+                </form>
+                <form action="/review/:shop_id/{{$shop->id}}">
+                    @csrf
+                    <button class="review_btn">口コミを書く</button>
                 </form>
                 <span>
                     @if($shop->likes->isEmpty())
@@ -104,6 +109,10 @@
         border-radius:5px;
     }
 
+    .like_shop_cd_content{
+        text-align:left;
+    }
+
     .like_shop_cd img{
         width: 100%;
         height: 50%;
@@ -121,10 +130,11 @@
         margin: 0px 18px;
     }
 
-    .detail_btn{
+    .detail_btn,
+    .review_btn{
         background:#305DFF;
         border:none;
-        margin: 10px 0px 10px 18px;
+        margin:0px 6px;
         color:#fff;
         padding: 5px 15px;
         border-radius:5px;
@@ -158,7 +168,7 @@
         border-bottom:none;
         color:gray;
         font-size:15px;
-        padding:10px 40px 10px 0px;
+        padding:10px 10px 10px 0px;
     }
 
     .search_text_box{
@@ -173,6 +183,31 @@
         font-size:15px;
         margin-right:2px;
         color:gray;
+    }
+
+    @media screen and (max-width: 768px){
+        .like_shop_cd{
+            width:45%;
+        }
+
+        .search_content{
+            width:63%;
+            position:relative;
+            left:40%;
+        }
+
+        .search_item{
+            width:25%;
+        }
+
+        .search_text_box{
+            width:40%;
+        }
+
+        .detail_btn,
+        .review_btn{
+            padding:5px 4px;
+        }
     }
 </style>
 @endsection

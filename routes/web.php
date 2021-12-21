@@ -7,6 +7,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -23,7 +24,6 @@ Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home
 Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
 Route::get('/done',[IndexController::class,'done']);
-// Route::post('search' , [IndexController::class,'search']);
 
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
@@ -38,6 +38,10 @@ Route::post('like/delete' , [LikeController::class , 'delete']);
 
 
 Route::post('/',[SearchController::class,'search'])->middleware('auth');
+
+
+Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind']);
+Route::post('/review/:shop_id/{shop}' , [ReviewController::class , 'create']);
 
 
 

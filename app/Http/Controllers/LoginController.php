@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function index(Request $request)
     {
-        return view('guest.login');
+        return view('login');
     }
 
     public function checkUser(ClientRequest $request)

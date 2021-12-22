@@ -24,7 +24,6 @@
             <div class="resevation_cd_header">
                 <div class="resevation_cd_header_text">予約</div>
             </div>
-
             <form action="/detail/:shop_id/{shop}" method="post" id="resevation_contents">
                 @csrf
                 @error('date')
@@ -110,7 +109,6 @@
                 </tr>
                 @endforeach
             </table>
-            {{ $reviews->links()}}
         </div>
     </div>
 </div>

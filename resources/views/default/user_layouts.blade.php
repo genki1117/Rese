@@ -59,10 +59,6 @@
             padding:0;
         }
 
-        .header_content{
-
-        }
-
         .main_content{
             max-width:1300px;
             padding: 30px 100px 0 100px;

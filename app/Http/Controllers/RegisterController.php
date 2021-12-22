@@ -19,7 +19,7 @@ class RegisterController extends Controller
 {
     public function store()
     {
-        return view('guest.register');
+        return view('register');
     }
 
     public function create(Request $request)
@@ -42,6 +42,6 @@ class RegisterController extends Controller
 
     public function add()
     {
-        return view('guest.thanks');
+        return view('thanks');
     }
 }

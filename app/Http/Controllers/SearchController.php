@@ -13,8 +13,10 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $areas = $request->input('area_id');
-        $genres = $request->input('genre_id');
+
+        $areas = Area::all();
+        $genres = Genre::all();
+        $user = Auth::user();
         $area_id = $request->input('area_id');
         $genre_id = $request->input('genre_id');
         $name = $request->input('name');
@@ -33,7 +35,7 @@ class SearchController extends Controller
         $shops = $query->get();
 
 
-        return view('guest.index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres'));
+        return view('index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres' , 'user'));
     }
 
 }

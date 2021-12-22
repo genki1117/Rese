@@ -5,15 +5,17 @@
 <!-- 検索バー -->
 <div class="search_content" id="search_content">
     <form action="/" method="post">
-    {{ Form::open(['url' => '/' , 'methos' => 'post' , 'files' => false]) }}
         @csrf
         <!-- 検索エリア 　-->
-        <!-- {{ Form::select('area_id' , App\Models\Area::selectlistAreas() ,null , ['class' => 'search_item' , 'placeholder' => 'Area'])}} -->
         <select type="num" name="area_id" id="" class="area_pull search_item" >
             <option value="">Area</option>
         @foreach($areas as $area)
+        @if((int)$area_id === $area->id)
+            <option value="{{ $area->id }}" selected>{{$area->id}}{{ $area->name }}</option>
+        @else
             <option value="{{ $area->id }}">{{ $area->name }}</option>
-            @endforeach
+        @endif
+        @endforeach
         </select>
 
         <!-- 検索ジャンル -->

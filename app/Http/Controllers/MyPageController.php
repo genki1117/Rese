@@ -20,7 +20,7 @@ class MyPageController extends Controller
         $likes = Like::all();
         $shop = Shop::all();
 
-        return view('user.mypage',compact('user','reservations','likes' , 'shop'));
+        return view('mypage',compact('user','reservations','likes' , 'shop'));
     }
 
     public function destroy(Request $request)

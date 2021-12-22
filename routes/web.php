@@ -21,26 +21,26 @@ Route::post('/login',[LoginController::class,'checkUser'])->name('login');
 
 
 Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home');
-Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind']);
-Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->name('reservation');
-Route::get('/done',[IndexController::class,'done']);
+Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind'])->middleware('auth')->name('shop');
+Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
+Route::get('/done',[IndexController::class,'done'])->middleware('auth')->name('done');
 
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
-Route::post('/mypage' , [MyPageController::class , 'update']);
+Route::post('/mypage' , [MyPageController::class , 'update'])->middleware('auth');
 Route::post('/logout',[MyPageController::class,'destroy'])->middleware('auth')->name('logout');
 Route::post('/delete',[MyPageController::class,'delete'])->middleware('auth')->name('delete');
 
 
-Route::get('/like/{shop}',[LikeController::class,'like'])->name('like');
-Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->name('unlike');
-Route::post('like/delete' , [LikeController::class , 'delete']);
+Route::get('/like/{shop}',[LikeController::class,'like'])->middleware('auth')->name('like');
+Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->middleware('auth')->name('unlike');
+Route::post('like/delete' , [LikeController::class , 'delete'])->middleware('auth');
 
 
 Route::post('/',[SearchController::class,'search'])->middleware('auth');
 
 
-Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind']);
+Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind'])->middleware('auth');
 Route::post('/review/:shop_id/{shop}' , [ReviewController::class , 'create']);
 
 

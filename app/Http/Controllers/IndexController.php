@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\User;
@@ -27,7 +26,9 @@ class IndexController extends Controller
         $user = Auth::user();
         $areas = Area::all();
         $genres = Genre::all();
-        return view('guest.index' , compact('shops' , 'user' , 'areas' , 'genres'));
+        $area_id ='';
+        $genre_id = '';
+        return view('index' , compact('shops' , 'user' , 'areas' , 'genres' , 'area_id' , 'genre_id'));
 
     }
 
@@ -36,7 +37,12 @@ class IndexController extends Controller
         $user = Auth::user();//Authからログインユーザーの情報を取得
         $shop_id = $shop->id;
         $reservations = Reservation::where('shop_id',$shop_id)->get();
-        $reviews = Review::Paginate(3);
+        $reviews = Review::where('shop_id' , $shop->id)->get();
+
+        // $reviews = Review::with(['shop' => function ($query) {
+        //     $query->where('id' , '1');
+        //     }])->get();
+
         return view('shop',compact('shop','reservations' , 'reviews'));
     }
     public function create(ReservationRequest $request)//予約追加

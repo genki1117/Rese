@@ -29,7 +29,6 @@ class IndexController extends Controller
         $area_id ='';
         $genre_id = '';
         return view('index' , compact('shops' , 'user' , 'areas' , 'genres' , 'area_id' , 'genre_id'));
-
     }
 
     public function bind(Shop $shop)
@@ -38,10 +37,6 @@ class IndexController extends Controller
         $shop_id = $shop->id;
         $reservations = Reservation::where('shop_id',$shop_id)->get();
         $reviews = Review::where('shop_id' , $shop->id)->get();
-
-        // $reviews = Review::with(['shop' => function ($query) {
-        //     $query->where('id' , '1');
-        //     }])->get();
 
         return view('shop',compact('shop','reservations' , 'reviews'));
     }
@@ -67,6 +62,33 @@ class IndexController extends Controller
     public function done()//予約完了ページ表示
     {
         return view('done');
+    }
+
+    public function search(Request $request)
+    {
+
+        $areas = Area::all();
+        $genres = Genre::all();
+        $user = Auth::user();
+        $area_id = $request->input('area_id');//エリアをbaldeのinputから取得
+        $genre_id = $request->input('genre_id');//ジャンルをbaldeのinputから取得
+        $name = $request->input('name');//ワードをbaldeのinputから取得
+        $query = Shop::query();//queryメソッド
+
+        if(!empty($area_id)){
+            $query->where('area_id' , $area_id);//エリア検索
+        }
+        elseif(!empty($genre_id)){
+            $query->where('genre_id' , $genre_id);//ジャンル検索
+        }
+        elseif(!empty($name)){
+            $query->where('name' , 'LIKE' , '%' . $name . '%');//ワード検索
+        }
+
+        $shops = $query->get();
+
+
+        return view('index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres' , 'user'));
     }
 
 }

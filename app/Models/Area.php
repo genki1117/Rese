@@ -17,14 +17,4 @@ class Area extends Model
     {
         return $this->hasOne('App\Modesl\Shop');
     }
-    public static function selectlistAreas()
-    {
-        $areas = Area::all();
-        $list = array();
-        $list += array("" => "Area");
-        foreach($areas as $area){
-            $list += array( $area->id => $area->name );
-        }
-        return $list;
-    }
 }

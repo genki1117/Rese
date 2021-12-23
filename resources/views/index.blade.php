@@ -11,7 +11,7 @@
             <option value="">Area</option>
         @foreach($areas as $area)
         @if((int)$area_id === $area->id)
-            <option value="{{ $area->id }}" selected>{{$area->id}}{{ $area->name }}</option>
+            <option value="{{ $area->id }}" selected>{{ $area->name }}</option>
         @else
             <option value="{{ $area->id }}">{{ $area->name }}</option>
         @endif
@@ -19,12 +19,16 @@
         </select>
 
         <!-- 検索ジャンル -->
-        {{ Form::select('genre_id' , App\models\Genre::selectlistGenres() , null , ['class' => 'search_item'])}}
-        <!-- <select type="num" name="genre_id" id="" class="genre_pull search_item">
-            @foreach(config('genre') as $key => $score)
-            <option value="{{ $key }}">{{ $score }}</option>
-            @endforeach
-        </select> -->
+        <select type="num" name="genre_id" id="" class="genre_pull search_item">
+            <option value="">Genre</option>
+        @foreach($genres as $genre)
+        @if((int)$genre_id === $genre->id)
+            <option value="{{ $genre->id }}" selected>{{ $genre->name }}</option>
+        @else
+            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+        @endif
+        @endforeach
+        </select>
 
         <!-- 検索名前 -->
         <span class="search_icon"><i class="fas fa-search"></i></span><input type="text" name="name" class="search_text_box" value="{{ old('name') }}">
@@ -91,7 +95,7 @@
     .flex-item{
         display:flex;
         flex-wrap:wrap;
-        justify-content:space-between;
+        justify-content:flex-start;
         align-items:center;
     }
 
@@ -103,11 +107,11 @@
     }
 
     .like_shop_cd{
-        width:300px;
+        width:23%;
         background:#fff;
         box-shadow:4px 4px 5px 1px gray;
         margin-top:50px;
-        margin-bottom:-20px;
+        margin-right:20px;
         border-radius:5px;
     }
 
@@ -136,7 +140,7 @@
     .review_btn{
         background:#305DFF;
         border:none;
-        margin:0px 6px;
+        margin:0px 1px;
         color:#fff;
         padding: 5px 15px;
         border-radius:5px;
@@ -156,7 +160,7 @@
         padding:5px;
         box-shadow:4px 4px 5px 1px gray;
         position:relative;
-        left:52%;
+        left:46%;
         top:-45px;
         border-radius:5px;
         margin-top:-10px;

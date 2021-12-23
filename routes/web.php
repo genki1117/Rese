@@ -24,6 +24,7 @@ Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home
 Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind'])->middleware('auth')->name('shop');
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
 Route::get('/done',[IndexController::class,'done'])->middleware('auth')->name('done');
+Route::post('/',[IndexController::class,'search'])->middleware('auth');
 
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
@@ -37,7 +38,7 @@ Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->middleware('auth'
 Route::post('like/delete' , [LikeController::class , 'delete'])->middleware('auth');
 
 
-Route::post('/',[SearchController::class,'search'])->middleware('auth');
+
 
 
 Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind'])->middleware('auth');

@@ -15,15 +15,4 @@ class Genre extends Model
     {
         return $this->hasOne(Shop::class,('genre_id'));
     }
-
-    public static function selectlistGenres()
-    {
-        $genres = Genre::all();
-        $list = array();
-        $list += array("" => "Genre");
-        foreach($genres as $genre){
-            $list += array($genre->id => $genre->name);
-        }
-        return $list;
-    }
 }

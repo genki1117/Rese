@@ -18,8 +18,6 @@ class CreateShopsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('area_id');
             $table->unsignedBigInteger('genre_id');
-            // $table->foreign('area_id')->references('id')->on('areas');
-            // $table->foreign('genre_id')->references('id')->on('genres');
             $table->string('img_path')->comment('画像path');
             $table->text('comment')->comment('紹介文');
             $table->timestamp('created_at')->useCurrent()->nullable();

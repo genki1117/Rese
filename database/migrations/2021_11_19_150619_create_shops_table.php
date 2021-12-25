@@ -35,5 +35,7 @@ class CreateShopsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('shops');
+        Schema::dropIfExists('areas');
+        Schema::dropIfExists('genres');
     }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OwnerRegisterController;
+use App\Http\Controllers\OwnerIndexController;
+
 
 
 
@@ -38,11 +41,16 @@ Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->middleware('auth'
 Route::post('like/delete' , [LikeController::class , 'delete'])->middleware('auth');
 
 
-
-
-
 Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind'])->middleware('auth');
 Route::post('/review/:shop_id/{shop}' , [ReviewController::class , 'create']);
+
+
+// owner管理画面
+Route::get('/owner/register' , [OwnerRegisterController::class , 'index'])->name('owner.register');
+Route::post('/owner/register' , [OwnerRegisterController::class , 'create'])->middleware('auth')->name('owner.register.create');
+
+
+Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->name('home');
 
 
 

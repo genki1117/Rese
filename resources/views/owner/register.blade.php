@@ -1,12 +1,12 @@
-@extends('default.guest_layouts')
-@section('title','Registration')
+@extends('default.owner_layouts')
+@section('title','OwnerRegistration')
 @section('content')
 <div class="register_content">
     <div class="register_content_header">
-                <h2>Registration</h2>
+                <h2>OwnerRegistration</h2>
             </div>
             <div class="register_content_input">
-                <form action="/register" method="post">
+                <form action="/owner/register" method="post">
                     @csrf
                     @error('name')
                     <span>{{$message}}</span>
@@ -22,6 +22,17 @@
 </div>
 @endsection
 <style>
+    #h-menu{
+        display:none;
+    }
+
+    #nav{
+        display:none;
+    }
+    .logo{
+        display:none;
+    }
+
         .register_content{
         display:inline-block;
         position:absolute;

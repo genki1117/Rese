@@ -61,5 +61,5 @@ $ php artisan db:seed
 $ php artisan serve
 ```
 
-ブラウザでhttp://localhost:8000/　を開く
+ブラウザで http://localhost:8000/　を開く
 

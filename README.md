@@ -14,7 +14,7 @@ $ cd /Applications/MAMP/htdocs/
 
 $ git clone https://github.com/genki1117/Rese.git
 
-$ cd Rese-20210918mochida
+$ cd Rese
 
 $ composer install
 

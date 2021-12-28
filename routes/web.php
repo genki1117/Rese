@@ -9,7 +9,9 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OwnerRegisterController;
+use App\Http\Controllers\OwnerLoginController;
 use App\Http\Controllers\OwnerIndexController;
+use App\Http\Controllers\AdminLoginController;
 
 
 
@@ -47,10 +49,15 @@ Route::post('/review/:shop_id/{shop}' , [ReviewController::class , 'create']);
 
 // owner管理画面
 Route::get('/owner/register' , [OwnerRegisterController::class , 'index'])->name('owner.register');
-Route::post('/owner/register' , [OwnerRegisterController::class , 'create'])->middleware('auth')->name('owner.register.create');
+Route::post('/owner/register' , [OwnerRegisterController::class , 'create'])->name('owner.register.create');
+Route::get('/owner/login' , [OwnerLoginController::class , 'index'])->name('owner.login');
+Route::post('/owner/login' , [OwnerLoginController::class , 'login'])->name('owner.login.store');
+Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->name('owner.home');
+Route::post('/owner/home' , [OwnerIndexController::class , 'AdminCreate'])->name('admin');
 
 
-Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->name('home');
+//admin管理画面
+Route::get('admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
 
 
 

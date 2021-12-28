@@ -34,7 +34,7 @@ class OwnerRegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('owner.home');
     }
 
 }

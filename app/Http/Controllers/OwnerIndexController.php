@@ -8,6 +8,6 @@ class OwnerIndexController extends Controller
 {
     public function index()
     {
-        return view('owner.index');
+        return view('owner.home');
     }
 }

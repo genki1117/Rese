@@ -7,35 +7,6 @@ Laravel Framework 8.72.0<br><br>
 Composer version 2.1.8<br><br>
 
 # インストール方法
-## composer<br>
-<a href="https://getcomposer.org/download/r">Mac</a><br>
-↑こちらのページ下部にある Manual Download から2.○.○.の最新バージョンのリンクをクリックしてください。<br>
-ターミナルで Download ディレクトリに移動し以下のコマンドを実行します。<br><br>
-
-```bash
-$ sudo mv composer.phar /usr/local/bin/composer
-
-$ chmod a+x /usr/local/bin/composer
-
-```
-
-
-<a href="https://getcomposer.org/doc/00-intro.md#installation-windows">Windowz</a><br>
-↑こちらのページの「Installation – WindowsのUsing the Installer」の文章中に「Composer-Setup.exe」というリンクがあるのでインストーラをダウンロードしてください。
-
-ダウンロードしたインストーラを起動します。
-
-Composer Setup「Installation Options」
-
-起動すると画面に「Developer mode」というチェックボックスが表示された画面が現れるのでOFFのまま「Next」をクリックします。
-
-Composer Setup 「Settings Check」
-
-「C:¥xampp¥php¥php.exe」を選択し「Next」をクリックします。
-
-インストール画面まで「Next」を選択し、インストール画面では「Install」を選択します。
-
-その後「Finish」ボタンを押したらインストール完了です。
 
 #clone
 ```bash

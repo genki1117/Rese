@@ -49,7 +49,7 @@
     }
 
     .register_content_header{
-        background-color:#305dff;
+        background-color:#918f8e;
         color:#fff;
         padding:15px;
         border-radius:5px 5px 0 0;
@@ -87,7 +87,7 @@
     }
 
     .login_btn button{
-        background:#305dff;
+        background:#918f8e;
         color:#fff;
         border:none;
         padding:5px 13px;

@@ -64,16 +64,12 @@
             align-items:center;
         }
 
-        .header_content{
-        }
-
         .h-menu{
             width: 50%;;
 
         }
 
         .main_content{
-            max-width:300px;
             padding: 30px 100px;
         }
 

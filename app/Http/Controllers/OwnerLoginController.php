@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ClientRequest;
 
 class OwnerLoginController extends Controller
 {
@@ -12,7 +13,7 @@ class OwnerLoginController extends Controller
         return view('owner.login');
     }
 
-    public function login(Request $request)
+    public function login(ClientRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
 

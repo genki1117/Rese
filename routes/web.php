@@ -54,6 +54,7 @@ Route::get('/owner/login' , [OwnerLoginController::class , 'index'])->name('owne
 Route::post('/owner/login' , [OwnerLoginController::class , 'login'])->name('owner.login.store');
 Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->name('owner.home');
 Route::post('/owner/home' , [OwnerIndexController::class , 'AdminCreate'])->name('admin');
+Route::get('/owner/done', [OwnerIndexController::class , 'CreateDone']);
 
 
 //admin管理画面

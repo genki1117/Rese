@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Shop;
 
 
 class AdminLoginController extends Controller
 {
     public function index()
     {
-        return view('admin.login');
+        $shops = Shop::all();
+        return view('admin.login', compact('shops'));
     }
 
-    public function checkAdminUser(ClientRequest $request)
+    public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->password;
+        $credentials = $request->only(['email', 'password', 'shop_id']);
+        if(Auth::guard('admin')->attempt($credentials)){
+            return redirect('/admin/:shop_id={id}/home');
+        }else{
+            return redirect('/admin/login');
+        }
     }
 }

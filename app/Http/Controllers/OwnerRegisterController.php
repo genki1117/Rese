@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Routing\Redirector;
+use App\Http\Requests\OwnerRegisterRequest;
 
 class OwnerRegisterController extends Controller
 {
@@ -18,20 +19,13 @@ class OwnerRegisterController extends Controller
         return view('owner.register');
     }
 
-    public function create(Request $request)
+    public function create(OwnerRegisterRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required',Rules\Password::defaults()]
-        ]);
-
             Owner::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         return redirect()->route('owner.home');
     }
 

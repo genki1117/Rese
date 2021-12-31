@@ -12,6 +12,8 @@ use App\Http\Controllers\OwnerRegisterController;
 use App\Http\Controllers\OwnerLoginController;
 use App\Http\Controllers\OwnerIndexController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AdminIndexController;
+use App\Http\Middleware\AdminMiddleware;
 
 
 
@@ -58,8 +60,10 @@ Route::get('/owner/done', [OwnerIndexController::class , 'CreateDone']);
 
 
 //admin管理画面
-Route::get('admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
-
+Route::get('/admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
+Route::post('/admin/login' , [AdminLoginController::class , 'login'])->name('admin.login.store');
+Route::get('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'index'])->name('admin.index');
+Route::post('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
 
 
 

@@ -6,8 +6,16 @@
                 <h2>AdminLogin</h2>
             </div>
             <div class="admin_login_content_input">
-                <form action="/login" method="post">
+                <form action="/admin/login" method="post">
                     @csrf
+                    <label class="input_label"><i class="fas fa-store"></i>
+                        <select name="shop_id" id="" class="input">
+                            <option value="">選択してください</option>
+                            @foreach($shops as $shop)
+                            <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+                            @endforeach
+                        </select>
+                    </label>
                     @error('email')
                     <div class="email_error_message">{{$message}}</div>
                     @enderror
@@ -100,5 +108,10 @@
         padding:5px 13px;
         border-radius:5px;
         margin-left:58%;
+    }
+
+    select.input{
+        width:60%;
+        margin-left:1px;
     }
 </style>

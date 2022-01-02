@@ -54,16 +54,18 @@ Route::get('/owner/register' , [OwnerRegisterController::class , 'index'])->name
 Route::post('/owner/register' , [OwnerRegisterController::class , 'create'])->name('owner.register.create');
 Route::get('/owner/login' , [OwnerLoginController::class , 'index'])->name('owner.login');
 Route::post('/owner/login' , [OwnerLoginController::class , 'login'])->name('owner.login.store');
-Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->name('owner.home');
-Route::post('/owner/home' , [OwnerIndexController::class , 'AdminCreate'])->name('admin');
+Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->middleware('owner')->name('owner.home');
+Route::post('/owner/home' , [OwnerIndexController::class , 'AdminCreate'])->name('admin.create');
 Route::get('/owner/done', [OwnerIndexController::class , 'CreateDone']);
+Route::post('/owner/logout' , [OwnerIndexController::class , 'logout'])->name('owner.logout');
 
 
 //admin管理画面
 Route::get('/admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
 Route::post('/admin/login' , [AdminLoginController::class , 'login'])->name('admin.login.store');
-Route::get('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'index'])->name('admin.index');
+Route::get('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'index'])->middleware('admin')->name('admin.index');
 Route::post('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
+Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->name('admin.logout');
 
 
 

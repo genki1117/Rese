@@ -7,6 +7,8 @@ use App\Models\Shop;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Requests\AdminCreateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerIndexController extends Controller
 {
@@ -16,15 +18,8 @@ class OwnerIndexController extends Controller
         return view('owner.home', compact('shops'));
     }
 
-    public function AdminCreate(Request $request)
+    public function AdminCreate(AdminCreateRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required',Rules\Password::defaults()],
-            'shop_id' => ['required', 'unique:admins,shop_id']
-        ]);
-
         Admin::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -33,12 +28,18 @@ class OwnerIndexController extends Controller
         ]);
 
         return redirect('/owner/done');
-            // $items = $request;
-            // return $items;
     }
 
     public function CreateDone()
     {
         return view('owner.done');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('owner')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/owner/login');
     }
 }

@@ -9,12 +9,12 @@
                 <form action="/owner/login" method="post">
                     @csrf
                     @error('email')
-                    <div class="email_error_message">{{$message}}</div>
+                    <div class="error_message">{{$message}}</div>
+                    @enderror
+                    @error('password')
+                    <div class="error_message">{{$message}}</div>
                     @enderror
                     <label class="input_label"><i class="fas fa-envelope"></i><input type="email" name="email" class="input" placeholder="Email" size="25"></label>
-                    @error('password')
-                    <div class="password_error_message">{{$message}}</div>
-                    @enderror
                     <label class="input_label"><i class="fas fa-lock"></i><input type="password" name="password" class="input" placeholder="Password" size="25"></label>
                     <div class="login_btn">
                         <button>ログイン</button>
@@ -36,8 +36,7 @@
             display:none;
         }
 
-        .email_error_message,
-        .password_error_message{
+        .error_message{
             color:red;
             margin-top:15px;
             margin-bottom:-15px;

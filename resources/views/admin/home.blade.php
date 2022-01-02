@@ -22,26 +22,42 @@
                     <th>コメント</th>
                     <td><textarea name="comment" id="" cols="40" rows="10" value="">{{ $shop->comment }}</textarea></td>
                 </tr>
-                <!-- <tr>
-                    <th>Email</th>
-                    <td><input type="email" name="email" class="input" size="40"></td>
-                </tr>
-
                 <tr>
-                    <th>Password</th>
-                    <td><input type="password" name="password" class="input" size="40"></td>
-                </tr>
-                <tr> -->
                     <th></th>
                     <td>
-                        <div class="login_btn">
+                        <div class="edit_btn">
                         <button>編集</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="admin_logout_btn">
+                        <button formaction="/admin/logout" formmethod="post">ログアウト</button>
                         </div>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
+</div>
+<div class="reservation_status">
+    <table class="admin_reservation_table">
+        <tr>
+            <th class="admin_reservation_th">予約名</th>
+            <th class="admin_reservation_th">予約日時</th>
+            <th class="admin_reservation_th">予約人数</th>
+            <th class="admin_reservation_th"></th>
+        </tr>
+        @foreach($reservations as $reservation)
+        <tr>
+            <td class="admin_reservation_td">{{ $reservation->user->name }}</td>
+            <td class="admin_reservation_td">{{ $reservation->started_at }}</td>
+            <td class="admin_reservation_td">{{ $reservation->number_of_people }}</td>
+            <td class="admin_reservation_td">
+                <button>削除</button>
+            </td>
+        </tr>
+        @endforeach
+    </table>
 </div>
 @endsection
 <style>
@@ -102,13 +118,37 @@
             height:28px;
         }
 
-        .login_btn button{
+        .edit_btn button,
+        .admin_logout_btn button{
             font-size:15px;
             background:#fff;
             border:none;
             padding:3px 20px;
             font-weight:bold;
             margin-top:10px;
+        }
+
+        table.admin_reservation_table{
+            width:100%;
+            margin-top:50px;
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+        }
+
+        .admin_reservation_th{
+            font-size:13px;
+            text-align:left;
+            border-bottom:1px solid black;
+            padding:10px 5px;
+        }
+
+        .admin_reservation_td{
+            border-bottom:1px solid black;
+            padding:10px 5px;
+        }
+
+        table {
+            border-collapse: collapse;
         }
 
 

@@ -17,7 +17,7 @@ class MyPageController extends Controller
         $reservations = Reservation::where('user_id',$user_Id)->get();;
         //ReservationModelから情報を取得、where句の第一引数でreservationsテーブルの'user_id'を指定。
         //第二引数で取得したIDを指定しget
-        $likes = Like::all();
+        $likes = Like::where('user_id', $user_Id)->get();
         $shop = Shop::all();
 
         return view('mypage',compact('user','reservations','likes' , 'shop'));

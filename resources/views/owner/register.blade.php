@@ -9,13 +9,13 @@
                 <form action="/owner/register" method="post">
                     @csrf
                     @error('name')
-                    <div>{{$message}}</div>
+                    <div class="error_message">{{$message}}</div>
                     @enderror
                     @error('email')
-                    <div>{{$message}}</div>
+                    <div class="error_message">{{$message}}</div>
                     @enderror
                     @error('password')
-                    <div>{{$message}}</div>
+                    <div class="error_message">{{$message}}</div>
                     @enderror
                     <label class="input_label"><i class="fas fa-user"></i><input type="text" name="name" class="input" placeholder="Username" size="25"></label>
                     <label class="input_label"><i class="fas fa-envelope"></i><input type="email" name="email" class="input" placeholder="Email" size="25"></label>
@@ -28,6 +28,12 @@
 </div>
 @endsection
 <style>
+    .error_message{
+        color:red;
+        margin-top:15px;
+        margin-bottom:-15px;
+    }
+
     #h-menu{
         display:none;
     }

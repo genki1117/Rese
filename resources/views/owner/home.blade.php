@@ -8,8 +8,17 @@
             <div class="admin_register_content_input">
                 <form action="/owner/home" method="post">
                     @csrf
+                    @error('shop_id')
+                    <div class="error_message">{{$message}}</div>
+                    @enderror
                     @error('name')
-                    <span>{{$message}}</span>
+                    <div class="error_message">{{$message}}</div>
+                    @enderror
+                    @error('email')
+                    <div class="error_message">{{$message}}</div>
+                    @enderror
+                    @error('password')
+                    <div class="error_message">{{$message}}</div>
                     @enderror
                     <table>
                         <tr>
@@ -37,8 +46,13 @@
                         <tr>
                             <th></th>
                             <td>
-                                <div class="login_btn">
+                                <div class="admin_register_btn">
                                 <button>登録</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="owner_logout_btn">
+                                <button formaction="/owner/logout" formmethod="post">ログアウト</button>
                                 </div>
                             </td>
                         </tr>
@@ -48,6 +62,9 @@
 </div>
 @endsection
 <style>
+        .error_message{
+            color:red;
+        }
         #h-menu{
             display:none;
         }
@@ -96,7 +113,8 @@
             height:28px;
         }
 
-        .login_btn button{
+        .admin_register_btn button,
+        .owner_logout_btn button{
             font-size:15px;
             background:#fff;
             border:none;

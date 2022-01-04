@@ -64,8 +64,8 @@ Route::post('/owner/logout' , [OwnerIndexController::class , 'logout'])->name('o
 //admin管理画面
 Route::get('/admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
 Route::post('/admin/login' , [AdminLoginController::class , 'login'])->name('admin.login.store');
-Route::get('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'index'])->middleware('admin')->name('admin.index');
-Route::post('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
+Route::get('/admin/{id}/home/' , [AdminIndexController::class , 'index'])->middleware('admin')->name('admin.index');
+Route::post('/admin/{id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
 Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->name('admin.logout');
 
 

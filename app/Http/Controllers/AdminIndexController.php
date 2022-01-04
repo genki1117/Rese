@@ -22,7 +22,7 @@ class AdminIndexController extends Controller
         $form = $request->all();
         unset($form['_token']);
         Shop::where('id', $request->id)->update($form);
-        return redirect('/admin/:shop_id={id}/home/')->with('flash_message', '編集が完了しました');
+        return redirect('/admin/{id}/home/')->with('flash_message', '編集が完了しました');
     }
 
     public function logout(Request $request)

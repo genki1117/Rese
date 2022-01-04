@@ -7,7 +7,7 @@
         <h2>Admin_Home</h2>
     </div>
     <div class="admin_home_content_input">
-        <form action="/admin/:shop_id={id}/home/" method="post">
+        <form action="/admin/{id}/home/" method="post">
             @csrf
             @error('name')
             <span>{{$message}}</span>

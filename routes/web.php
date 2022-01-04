@@ -13,9 +13,11 @@ use App\Http\Controllers\OwnerLoginController;
 use App\Http\Controllers\OwnerIndexController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminIndexController;
+use App\Http\Controllers\ImgUploadController;
 use App\Http\Middleware\AdminMiddleware;
-
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/register',[RegisterController::class,'store'])->name('register');
@@ -32,7 +34,6 @@ Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind'])->middlewar
 Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
 Route::get('/done',[IndexController::class,'done'])->middleware('auth')->name('done');
 Route::post('/',[IndexController::class,'search'])->middleware('auth');
-
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
 Route::post('/mypage' , [MyPageController::class , 'update'])->middleware('auth');
@@ -68,7 +69,27 @@ Route::post('/admin/:shop_id={id}/home/' , [AdminIndexController::class , 'updat
 Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->name('admin.logout');
 
 
+//画像アップロード
+Route::get('/imgupload', [ImgUploadController::class, 'index']);
+Route::post('/imgupload', [ImgUploadController::class, 'store']);
 
+//メール認証
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/hash', function(EmailVerificationRequest $request){
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function(Request $request){
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link send!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/profile', function () {
+})->middleware('verified');
 
 
 

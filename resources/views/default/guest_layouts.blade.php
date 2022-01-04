@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <h2>Rest</h2>
+                    <h2>Rese</h2>
                 </div>
             </div>
             @yield('content')

@@ -6,8 +6,8 @@
     <div class="review_content_wrapper">
         <div class="review_header">
         </div>
-        <form action="/review/:shop_id/{shop}" method="post">
-            {{ Form::open(['url' => '/review/:shop_id/{shop}' , 'method' => 'podt' , 'files' => 'false'])}}
+        <form action="/review/{shop}" method="post">
+            {{ Form::open(['url' => '/review/{shop}' , 'method' => 'podt' , 'files' => 'false'])}}
             {{ Form::token()}}
             <div class="review_shop_name_label">
                 <label for="">店名</label><span class="review_shop_name">{{ $shop->name }}</span>

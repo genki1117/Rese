@@ -13,22 +13,19 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-
-        $areas = Area::all();
-        $genres = Genre::all();
-        $user = Auth::user();
         $area_id = $request->input('area_id');
         $genre_id = $request->input('genre_id');
         $name = $request->input('name');
+
         $query = Shop::query();
 
         if(!empty($area_id)){
             $query->where('area_id' , $area_id);
         }
-        elseif(!empty($genre_id)){
+        if(!empty($genre_id)){
             $query->where('genre_id' , $genre_id);
         }
-        elseif(!empty($name)){
+        if(!empty($name)){
             $query->where('name' , 'LIKE' , '%' . $name . '%');
         }
 

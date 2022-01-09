@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminIndexController extends Controller
 {
@@ -19,8 +20,15 @@ class AdminIndexController extends Controller
 
     public function update(Request $request)
     {
-        $form = $request->all();
-        unset($form['_token']);
+        $shop_img_name = $request->file('shop_Img')->getClientOriginalName();
+        $path = $request->file('shop_Img')->storeAs('public', $shop_img_name);
+        $form = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'img_path' => 'storage/' . $shop_img_name
+        ];
+
         Shop::where('id', $request->id)->update($form);
         return redirect('/admin/{id}/home/')->with('flash_message', '編集が完了しました');
     }

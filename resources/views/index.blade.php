@@ -40,7 +40,8 @@
     @foreach($shops as $shop)
     <div class="like_shop_cd">
         <div class="like_shop_cd_content">
-            <img src="{{$shop->img_path}}" alt="{{$shop->name}}">
+            <img src="{{ $shop->img_path }}" alt="{{$shop->name}}">
+
             <div class="like_shop_cd_header">{{$shop->name}}</div>
             <div class="like_shop_cd_tag">
                 <span>#{{ $shop->area->name }}</span>
@@ -48,11 +49,11 @@
 
             </div>
             <div class="like_shop_cd_btn flex-item">
-                <form action="/detail/:shop_id/{{$shop->id}}" method="get">
+                <form action="/detail/{{$shop->id}}" method="get">
                     @csrf
                     <button class="detail_btn">詳しく見る</button>
                 </form>
-                <form action="/review/:shop_id/{{$shop->id}}">
+                <form action="/review/{{$shop->id}}">
                     @csrf
                     <button class="review_btn">口コミを書く</button>
                 </form>

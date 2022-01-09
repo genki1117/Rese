@@ -6,7 +6,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OwnerRegisterController;
 use App\Http\Controllers\OwnerLoginController;
@@ -18,6 +17,7 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MailController;
 
 
 Route::get('/register',[RegisterController::class,'store'])->name('register');
@@ -30,8 +30,8 @@ Route::post('/login',[LoginController::class,'checkUser'])->name('login');
 
 
 Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home');
-Route::get('/detail/:shop_id/{shop}',[IndexController::class,'bind'])->middleware('auth')->name('shop');
-Route::post('/detail/:shop_id/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
+Route::get('/detail/{shop}',[IndexController::class,'bind'])->middleware('auth')->name('shop');
+Route::post('/detail/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
 Route::get('/done',[IndexController::class,'done'])->middleware('auth')->name('done');
 Route::post('/',[IndexController::class,'search'])->middleware('auth');
 
@@ -46,8 +46,8 @@ Route::get('/unlike/{shop}',[LikeController::class,'unlike'])->middleware('auth'
 Route::post('like/delete' , [LikeController::class , 'delete'])->middleware('auth');
 
 
-Route::get('/review/:shop_id/{shop}' , [ReviewController::class , 'bind'])->middleware('auth');
-Route::post('/review/:shop_id/{shop}' , [ReviewController::class , 'create']);
+Route::get('/review/{shop}' , [ReviewController::class , 'bind'])->middleware('auth');
+Route::post('/review/{shop}' , [ReviewController::class , 'create']);
 
 
 // owner管理画面
@@ -68,6 +68,12 @@ Route::get('/admin/{id}/home/' , [AdminIndexController::class , 'index'])->middl
 Route::post('/admin/{id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
 Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->name('admin.logout');
 
+// メール送信
+Route::get('/admin/{id}/mailcontact', [MailController::class, 'index'])->name('contact');
+Route::post('/admin/{id}/mailcontact/confirm', [MailController::class, 'confirm'])->name('confirm');
+Route::post('/admin/{id}/mailcontact/send', [MailController::class, 'send'])->name('send');
+Route::get('/admin/{id}/mailcontact/complete',[MailContoroller::class, 'complete'])->name('complete');
+
 
 //画像アップロード
 Route::get('/imgupload', [ImgUploadController::class, 'index']);
@@ -78,7 +84,7 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/hash', function(EmailVerificationRequest $request){
+Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request){
     $request->fulfill();
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
@@ -92,6 +98,8 @@ Route::get('/profile', function () {
 })->middleware('verified');
 
 
+//メール送信
+Route::get('/mail', [MailController::class, ('send')]);
 
 // Route::get('/', function () {
 //     return view('welcome');

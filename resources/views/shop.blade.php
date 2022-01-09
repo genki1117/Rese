@@ -10,7 +10,7 @@
             <div class="shop_intro_header_title">{{$shop->name}}</div>
         </div>
         <div class="shop_intro_img">
-            <img src="{{$shop->img_path}}" alt="{{$shop->name}}">
+            <img src="{{ asset($shop->img_path) }}" alt="{{$shop->name}}">
         </div>
         <div class="shop_intro_tag">
             <span class="area_tag">#{{optional($shop->area)->name}}</span>
@@ -24,7 +24,7 @@
             <div class="resevation_cd_header">
                 <div class="resevation_cd_header_text">予約</div>
             </div>
-            <form action="/detail/:shop_id/{shop}" method="post" id="resevation_contents">
+            <form action="/detail/{shop}" method="post" id="resevation_contents">
                 @csrf
                 @error('date')
                 <div class="date_error_message">{{$message}}</div>

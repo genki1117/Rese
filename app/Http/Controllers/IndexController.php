@@ -78,10 +78,10 @@ class IndexController extends Controller
         if(!empty($area_id)){
             $query->where('area_id' , $area_id);//エリア検索
         }
-        elseif(!empty($genre_id)){
+        if(!empty($genre_id)){
             $query->where('genre_id' , $genre_id);//ジャンル検索
         }
-        elseif(!empty($name)){
+        if(!empty($name)){
             $query->where('name' , 'LIKE' , '%' . $name . '%');//ワード検索
         }
 

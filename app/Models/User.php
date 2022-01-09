@@ -11,8 +11,8 @@ use App\Models\Like;
 use App\Models\Reservation;
 use App\Models\Review;
 
-class User extends Authenticatable
-// implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
+
 {
     use HasApiTokens, HasFactory, Notifiable;
 

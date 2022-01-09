@@ -71,7 +71,7 @@
                         <span>#{{$like->shop->genre->name}}</span>
                     </div>
                     <div class="like_shop_cd_btn flex-item">
-                        <form action="/detail/:shop_id/{{$like->shop->id}}" method=get>
+                        <form action="/detail/{{$like->shop->id}}" method=get>
                         @csrf
                             <button class="detail_btn">詳しく見る</button>
                         </form>

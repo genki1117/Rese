@@ -26,7 +26,7 @@ class OwnerRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required | string | max:255',
-            'email' => 'required | email | string | max:255 | unique:owner',
+            'email' => 'required | email | string | max:255 | unique:owners',
             'password' => 'required',Rules\Password::defaults(),
         ];
     }

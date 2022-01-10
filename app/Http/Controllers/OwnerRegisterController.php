@@ -21,7 +21,7 @@ class OwnerRegisterController extends Controller
 
     public function create(OwnerRegisterRequest $request)
     {
-            Owner::create([
+        Owner::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

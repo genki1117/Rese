@@ -9,11 +9,14 @@
     <div class="mail_contacct_content_input">
         <form action="/admin/{id}/mailcontact/confirm" method="post">
             @csrf
-            @error('name')
-            <span>{{$message}}</span>
+            @error('title')
+            <div>{{$message}}</div>
+            @enderror
+            @error('message')
+            <div>{{$message}}</div>
             @enderror
             <table class="mail_contact_table">
-                <input type="text" name="shop_id" value="">
+                <input type="text" name="shop_id" value="{{ $admin->id }}">
                 <tr>
                     <th>タイトル</th>
                     <td><input type="text" name="title" class="input" size="80" value=""></td>

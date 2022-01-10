@@ -16,9 +16,9 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('shop_id')->commnet('送信店舗');
-            $table->foreigm('shop_ig')->references('id')->on('shops');
+            $table->foreign('shop_id')->references('id')->on('shops');
             $table->string('title');
-            $tabe->text('message');
+            $table->text('message');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

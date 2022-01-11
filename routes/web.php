@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MailController;
 
-
+//コメントコメント
 Route::get('/register',[RegisterController::class,'store'])->name('register');
 Route::post('/register',[RegisterController::class,'create']);
 Route::get('/thanks',[RegisterController::class,'add'])->name('thanks');

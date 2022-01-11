@@ -18,17 +18,30 @@ use App\Http\Requests\ReservationRequest;
 
 class IndexController extends Controller
 {
-    public function index()//一覧ページ取得
+    public function index(Request $request)//一覧ページ取得
     {
-        $shops = Shop::with(['likes' => function($query){
-            $query->where('user_id' , Auth::id());
-        }])->get();
-        $user = Auth::user();
         $areas = Area::all();
         $genres = Genre::all();
-        $area_id ='';
-        $genre_id = '';
-        return view('index' , compact('shops' , 'user' , 'areas' , 'genres' , 'area_id' , 'genre_id'));
+        $user = Auth::user();
+        $area_id = $request->input('area_id');//エリアをbaldeのinputから取得
+        $genre_id = $request->input('genre_id');//ジャンルをbaldeのinputから取得
+        $name = $request->input('name');//ワードをbaldeのinputから取得
+        $query = Shop::query();//queryメソッド
+
+        if(!empty($area_id)){
+            $query->where('area_id' , $area_id);//エリア検索
+        }
+        if(!empty($genre_id)){
+            $query->where('genre_id' , $genre_id);//ジャンル検索
+        }
+        if(!empty($name)){
+            $query->where('name' , 'LIKE' , '%' . $name . '%');//ワード検索
+        }
+
+        $shops = $query->get();
+
+
+        return view('index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres' , 'user'));
     }
 
     public function bind(Shop $shop)
@@ -62,33 +75,6 @@ class IndexController extends Controller
     public function done()//予約完了ページ表示
     {
         return view('done');
-    }
-
-    public function search(Request $request)
-    {
-
-        $areas = Area::all();
-        $genres = Genre::all();
-        $user = Auth::user();
-        $area_id = $request->input('area_id');//エリアをbaldeのinputから取得
-        $genre_id = $request->input('genre_id');//ジャンルをbaldeのinputから取得
-        $name = $request->input('name');//ワードをbaldeのinputから取得
-        $query = Shop::query();//queryメソッド
-
-        if(!empty($area_id)){
-            $query->where('area_id' , $area_id);//エリア検索
-        }
-        if(!empty($genre_id)){
-            $query->where('genre_id' , $genre_id);//ジャンル検索
-        }
-        if(!empty($name)){
-            $query->where('name' , 'LIKE' , '%' . $name . '%');//ワード検索
-        }
-
-        $shops = $query->get();
-
-
-        return view('index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres' , 'user'));
     }
 
 }

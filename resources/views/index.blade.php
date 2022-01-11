@@ -4,8 +4,7 @@
 
 <!-- 検索バー -->
 <div class="search_content" id="search_content">
-    <form action="/" method="post">
-        @csrf
+    <form action="/" method="get">
         <!-- 検索エリア 　-->
         <select type="num" name="area_id" id="" class="area_pull search_item" >
             <option value="">Area</option>

@@ -13,14 +13,16 @@
             <span>{{$message}}</span>
             @enderror
             <table class="mail_confirm_table">
-                <input type="text" name="shop_id" value="">
+                <input type="text" name="shop_id" value="{{ $inputs['shop_id'] }}">
                 <tr>
                     <th>タイトル</th>
-                    <td></td>
+                    <td>{{ $inputs['title']}}</td>
+                    <input type="hidden" name="title" value="{{ $inputs['title'] }}">
                 </tr>
                 <tr>
                     <th>本文</th>
-                    <td></td>
+                    <td>{{ $inputs['message'] }}</td>
+                    <input type="hidden" name="message" value="{{ $inputs['message'] }}">
                 </tr>
                 <!-- <tr>
                     <th>画像</th>
@@ -30,13 +32,13 @@
                     <th></th>
                     <td>
                         <div class="confirm_back_btn">
-                        <button>確認画面に戻る</button>
+                        <button name="action" type="submit" value="return">確認画面に戻る</button>
                         </div>
                     </td>
 
                     <td>
                         <div class="send_btn">
-                        <button>送信</button>
+                        <button name="action" type="submit" value="submit">送信</button>
                         </div>
                     </td>
                     <!-- <td>

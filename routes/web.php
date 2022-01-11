@@ -33,7 +33,6 @@ Route::get('/',[IndexController::class,'index'])->middleware('auth')->name('home
 Route::get('/detail/{shop}',[IndexController::class,'bind'])->middleware('auth')->name('shop');
 Route::post('/detail/{shop}',[IndexController::class,'create'])->middleware('auth')->name('reservation');
 Route::get('/done',[IndexController::class,'done'])->middleware('auth')->name('done');
-Route::post('/',[IndexController::class,'search'])->middleware('auth');
 
 Route::get('/mypage',[MyPageController::class,'store'])->middleware('auth');
 Route::post('/mypage' , [MyPageController::class , 'update'])->middleware('auth');
@@ -57,16 +56,16 @@ Route::get('/owner/login' , [OwnerLoginController::class , 'index'])->name('owne
 Route::post('/owner/login' , [OwnerLoginController::class , 'login'])->name('owner.login.store');
 Route::get('/owner/home' , [OwnerIndexController::class , 'index'])->middleware('owner')->name('owner.home');
 Route::post('/owner/home' , [OwnerIndexController::class , 'AdminCreate'])->name('admin.create');
-Route::get('/owner/done', [OwnerIndexController::class , 'CreateDone']);
-Route::post('/owner/logout' , [OwnerIndexController::class , 'logout'])->name('owner.logout');
+Route::get('/owner/done', [OwnerIndexController::class , 'CreateDone'])->middleware('owner');
+Route::post('/owner/logout' , [OwnerIndexController::class , 'logout'])->middleware('owner')->name('owner.logout');
 
 
 //admin管理画面
 Route::get('/admin/login' , [AdminLoginController::class , 'index'])->name('admin.login');
 Route::post('/admin/login' , [AdminLoginController::class , 'login'])->name('admin.login.store');
 Route::get('/admin/{id}/home/' , [AdminIndexController::class , 'index'])->middleware('admin')->name('admin.index');
-Route::post('/admin/{id}/home/' , [AdminIndexController::class , 'update'])->name('admin.edit');
-Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->name('admin.logout');
+Route::post('/admin/{id}/home/' , [AdminIndexController::class , 'update'])->middleware('admin')->name('admin.edit');
+Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->middleware('admin')->name('admin.logout');
 
 // メール送信
 Route::get('/admin/{id}/mailcontact', [MailController::class, 'index'])->name('contact');

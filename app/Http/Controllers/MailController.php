@@ -27,26 +27,29 @@ class MailController extends Controller
             'message' => 'required'
         ]);
 
+        $inputs = $request->all();
+        return view('emails.confirm', ['inputs' => $inputs]);
+    }
+
+    public function send(Request $request)
+    {
+        $action = $request->get('action', 'return');
+        $input  = $request->except('action');
+
         Contact::create([
             'shop_id' => $request->shop_id,
             'title' => $request->title,
             'message' => $request->message,
         ]);
 
-        $inputs = $request->all();
-
-        return view('emails.confirm');
-    }
-
-    public function send()
-    {
         $to = [
             [
                 'email' => 'komekome@gmail.com',
                 'name' => 'sudo',
             ]
         ];
-        Mail::to($to)->send(new SendMail());
+        Mail::to($to)->send(new SendMail($input));
+        // Mail::to($input['email'])->send(new ContactMail('mails.contact', 'お問い合わせありがとうございます', $input));
     }
 
     public function complete()

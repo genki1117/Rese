@@ -98,7 +98,7 @@ Route::get('/profile', function () {
 
 
 //メール送信
-Route::get('/mail', [MailController::class, ('send')]);
+Route::post('/mail', [MailController::class, ('send')]);
 
 // Route::get('/', function () {
 //     return view('welcome');

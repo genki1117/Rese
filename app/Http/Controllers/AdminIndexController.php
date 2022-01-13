@@ -7,9 +7,14 @@ use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+/**
+ * 管理者用のページのコントローラー
+ */
 class AdminIndexController extends Controller
 {
+    /**
+     * 管理者のトップ
+     */
     public function index(Request $request)
     {
         $id = Auth::guard('admin')->id();

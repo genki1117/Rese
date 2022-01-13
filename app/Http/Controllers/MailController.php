@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\SendMail;
-use Mail;
+use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Admin;
 use App\Models\Shop;
-use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class MailController extends Controller
 {
     public function index()
     {
-        // $id = Admin::find('id');
         $id = Auth::guard('admin')->id();
         $admin = Admin::find($id);
         return view('emails.index', ['admin' => $admin]);
@@ -33,23 +33,11 @@ class MailController extends Controller
 
     public function send(Request $request)
     {
-        $action = $request->get('action', 'return');
-        $input  = $request->except('action');
+        $mail_text = $request->input('message');
+        $mail_title =$request->input('title');
+        $users = User::get('email');
 
-        Contact::create([
-            'shop_id' => $request->shop_id,
-            'title' => $request->title,
-            'message' => $request->message,
-        ]);
-
-        $to = [
-            [
-                'email' => 'komekome@gmail.com',
-                'name' => 'sudo',
-            ]
-        ];
-        Mail::to($to)->send(new SendMail($input));
-        // Mail::to($input['email'])->send(new ContactMail('mails.contact', 'お問い合わせありがとうございます', $input));
+        Mail::to($users)->send(new SendMail($mail_text, $mail_title));
     }
 
     public function complete()

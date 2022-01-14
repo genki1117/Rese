@@ -42,7 +42,9 @@
             </table>
         </form>
         <form action="/admin/{id}/mailcontact" method="get">
-            <button>メール作成</button>
+            <div class="mail_send_btn">
+                <button>メール作成</button>
+            </div>
         </form>
     </div>
 </div>
@@ -124,7 +126,8 @@
         }
 
         .edit_btn button,
-        .admin_logout_btn button{
+        .admin_logout_btn button,
+        .mail_send_btn button{
             font-size:15px;
             background:#fff;
             border:none;

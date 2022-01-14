@@ -18,7 +18,11 @@ use App\Http\Requests\ReservationRequest;
 
 class IndexController extends Controller
 {
-    public function index(Request $request)//一覧ページ取得
+    /**
+     * 一覧表示
+     * 検索
+     */
+    public function index(Request $request)
     {
         $areas = Area::all();
         $genres = Genre::all();
@@ -37,13 +41,12 @@ class IndexController extends Controller
         if(!empty($name)){
             $query->where('name' , 'LIKE' , '%' . $name . '%');//ワード検索
         }
-
         $shops = $query->get();
-
-
         return view('index' , compact('shops' , 'area_id' , 'genre_id' , 'name' , 'areas' , 'genres' , 'user'));
     }
-
+    /**
+     * 店舗詳細ページ表示
+     */
     public function bind(Shop $shop)
     {
         $user = Auth::user();//Authからログインユーザーの情報を取得
@@ -53,6 +56,9 @@ class IndexController extends Controller
 
         return view('shop',compact('shop','reservations' , 'reviews'));
     }
+    /**
+     * 予約登録
+     */
     public function create(ReservationRequest $request)//予約追加
     {
         $form = $request->all();

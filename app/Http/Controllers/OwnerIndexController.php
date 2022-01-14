@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class OwnerIndexController extends Controller
 {
+    /**
+     * オーナー画面表示
+     */
     public function index()
     {
         $shops = Shop::all();
         return view('owner.home', compact('shops'));
     }
-
+    /**
+     * admin登録
+     */
     public function AdminCreate(AdminCreateRequest $request)
     {
         Admin::create([
@@ -26,15 +31,18 @@ class OwnerIndexController extends Controller
             'password' => Hash::make($request->password),
             'shop_id' => $request->shop_id
         ]);
-
         return redirect('/owner/done');
     }
-
+    /**
+     * 登録完了ページ
+     */
     public function CreateDone()
     {
         return view('owner.done');
     }
-
+    /**
+     * ログアウト
+     */
     public function logout(Request $request)
     {
         Auth::guard('owner')->logout();

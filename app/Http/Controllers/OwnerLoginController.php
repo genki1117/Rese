@@ -8,11 +8,16 @@ use App\Http\Requests\ClientRequest;
 
 class OwnerLoginController extends Controller
 {
+    /**
+     * オーナーログイン表示
+     */
     public function index()
     {
         return view('owner.login');
     }
-
+    /**
+     * ログイン
+     */
     public function login(ClientRequest $request)
     {
         $credentials = $request->only(['email', 'password']);

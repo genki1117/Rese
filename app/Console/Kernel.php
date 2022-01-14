@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
+use App\Http\Models\Reservation;
+use App\Http\models\User;
 
 class Kernel extends ConsoleKernel
 {

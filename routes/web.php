@@ -67,11 +67,12 @@ Route::get('/admin/{id}/home/' , [AdminIndexController::class , 'index'])->middl
 Route::post('/admin/{id}/home/' , [AdminIndexController::class , 'update'])->middleware('admin')->name('admin.edit');
 Route::post('/admin/logout' , [AdminIndexController::class , 'logout'])->middleware('admin')->name('admin.logout');
 
+
 // メール送信
 Route::get('/admin/{id}/mailcontact', [MailController::class, 'index'])->name('contact');
 Route::post('/admin/{id}/mailcontact/confirm', [MailController::class, 'confirm'])->name('confirm');
 Route::post('/admin/{id}/mailcontact/send', [MailController::class, 'send'])->name('send');
-Route::get('/admin/{id}/mailcontact/complete',[MailContoroller::class, 'complete'])->name('complete');
+Route::get('/admin/mailcontact/complete',[MailController::class, 'complete'])->name('complete');
 
 
 //画像アップロード

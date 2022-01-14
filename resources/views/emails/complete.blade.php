@@ -6,20 +6,15 @@
     <div class="mail_confirm_content_header">
         <h2>Mail_complete</h2>
         <p>メール送信完了</p>
-        <a href="{{ route('admin.index')}}">管理画面に戻る</a>
+        <form action="/admin/{id}/mailcontact" method="get">
+            <div class="admin_back_btn">
+                <button>管理画面TOP</button>
+            </div>
+        </form>
     </div>
 </div>
 
-<!-- <div class="reservation_status">
-    <table class="admin_reservation_table">
-        <tr>
-            <th class="admin_reservation_th">予約名</th>
-            <th class="admin_reservation_th">予約日時</th>
-            <th class="admin_reservation_th">予約人数</th>
-            <th class="admin_reservation_th"></th>
-        </tr>
-    </table>
-</div> -->
+
 @endsection
 <style>
         #h-menu{
@@ -80,7 +75,8 @@
         }
 
         .confirm_back_btn button,
-        .send_btn button{
+        .send_btn button,
+        .admin_back_btn button{
             font-size:15px;
             background:#fff;
             border:none;

@@ -12,14 +12,18 @@ class LikeController extends Controller
 {
     public function like(Shop $shop,Request $request)
     {
+        /**
+         * お気に入り登録
+         */
         $like = New like();
         $like->shop_id = $shop->id;
         $like->user_id = Auth::user()->id;
-
         $like->save();
         return back();
     }
-
+    /**
+     * お気に入り解除
+     */
     public function unlike(Shop $shop,Request $request)
     {
         $user = Auth::user()->id;

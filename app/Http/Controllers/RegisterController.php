@@ -17,11 +17,16 @@ use Illuminate\Routing\Redirector;
 
 class RegisterController extends Controller
 {
+    /**
+     * ユーザー登録画面表示
+     */
     public function store()
     {
         return view('register');
     }
-
+    /**
+     * ユーザー登録
+     */
     public function create(Request $request)
     {
         $request->validate([
@@ -29,19 +34,18 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required',Rules\Password::defaults()]
         ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         event(new Registered($user));
         Auth::login($user);
         return redirect()->route('verification.notice');
-        // return redirect()->route('thanks');
     }
-
+    /**
+     * 登録画面完了画面表示
+     */
     public function add()
     {
         return view('thanks');

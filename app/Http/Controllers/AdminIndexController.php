@@ -22,7 +22,9 @@ class AdminIndexController extends Controller
         $reservations = Reservation::where('shop_id', $shop->id)->with('user')->get();
         return view('admin.home', compact('id', 'shop', 'reservations'));
     }
-
+    /**
+     * 店舗情報更新
+     */
     public function update(Request $request)
     {
         $shop_img_name = $request->file('shop_Img')->getClientOriginalName();
@@ -37,7 +39,9 @@ class AdminIndexController extends Controller
         Shop::where('id', $request->id)->update($form);
         return redirect('/admin/{id}/home/')->with('flash_message', '編集が完了しました');
     }
-
+    /**
+     * ログアウト
+     */
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

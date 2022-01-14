@@ -10,6 +10,9 @@ use App\Models\Shop;
 
 class MyPageController extends Controller
 {
+    /**
+     * マイページ表示
+     */
     public function store()
     {
         $user = Auth::user();//user情報取得
@@ -19,10 +22,11 @@ class MyPageController extends Controller
         //第二引数で取得したIDを指定しget
         $likes = Like::where('user_id', $user_Id)->get();
         $shop = Shop::all();
-
         return view('mypage',compact('user','reservations','likes' , 'shop'));
     }
-
+    /**
+     * ログアウト
+     */
     public function destroy(Request $request)
     {
         //ログアウト
@@ -31,14 +35,18 @@ class MyPageController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login');
     }
-
+    /**
+     * 予約削除
+     */
     public function delete(Request $request)
     {
         //予約取り消し
         Reservation::find($request->id)->delete();
         return redirect('/mypage');
     }
-
+    /**
+     * 予約更新
+     */
     public function update(Request $request)
     {
         $form = $request->all();

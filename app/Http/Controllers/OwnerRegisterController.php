@@ -14,11 +14,16 @@ use App\Http\Requests\OwnerRegisterRequest;
 
 class OwnerRegisterController extends Controller
 {
+    /**
+     * オーナー登録画面表示
+     */
     public function index()
     {
         return view('owner.register');
     }
-
+    /**
+     * オーナー登録
+     */
     public function create(OwnerRegisterRequest $request)
     {
         Owner::create([

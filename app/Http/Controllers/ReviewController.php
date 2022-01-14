@@ -11,11 +11,17 @@ use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {
+    /**
+     * レビューページ表示
+     */
     public function bind(Shop $shop)
     {
         $user = Auth::id();
         return view('review' , compact('shop' , 'user'));
     }
+    /**
+     * レビュー登録
+     */
     public function create(ReviewRequest $request)
     {
         $form = $request->all();

@@ -13,7 +13,7 @@
             <span>{{$message}}</span>
             @enderror
             <table class="mail_confirm_table">
-                <input type="text" name="shop_id" value="{{ $inputs['shop_id'] }}">
+                <input type="hidden" name="shop_id" value="{{ $inputs['shop_id'] }}">
                 <tr>
                     <th>タイトル</th>
                     <td>{{ $inputs['title']}}</td>
@@ -32,7 +32,7 @@
                     <th></th>
                     <td>
                         <div class="confirm_back_btn">
-                        <button name="action" type="submit" value="return">確認画面に戻る</button>
+                        <button formaction="/admin/{id}/mailcontact" formmethod="get">確認画面に戻る</button>
                         </div>
                     </td>
 

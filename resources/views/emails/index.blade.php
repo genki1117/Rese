@@ -16,19 +16,19 @@
             <div>{{$message}}</div>
             @enderror
             <table class="mail_contact_table">
-                <input type="text" name="shop_id" value="{{ $admin->id }}">
+                <input type="hidden" name="shop_id" value="{{ $admin->id }}">
                 <tr>
                     <th>タイトル</th>
-                    <td><input type="text" name="title" class="input" size="80" value=""></td>
+                    <td>
+                        <input type="text" name="title" class="input" size="80" value="">
+                    </td>
                 </tr>
                 <tr>
                     <th>本文</th>
-                    <td><textarea name="message" id="" cols="80" rows="10" value=""></textarea></td>
+                    <td>
+                        <textarea name="message" id="" cols="80" rows="10" value=""></textarea>
+                    </td>
                 </tr>
-                <!-- <tr>
-                    <th>画像</th>
-                    <td><input type="file" name="shop_Img" class="input" size="40" value="" ></td>
-                </tr> -->
                 <tr>
                     <th></th>
                     <td>
@@ -36,29 +36,16 @@
                         <button>確認</button>
                         </div>
                     </td>
-                    <!-- <td>
-                        <div class="admin_logout_btn">
-                        <button formaction="/admin/logout" formmethod="post">ログアウト</button>
+                    <td>
+                        <div class="admin_back_btn">
+                            <button formaction="/admin/{id}/home/" formmethod="get">戻る</button>
                         </div>
-                    </td> -->
+                    </td>
                 </tr>
             </table>
         </form>
-        <!-- <form action="/admin/{id}/mailcontact" method="get">
-            <button>メール作成</button>
-        </form> -->
     </div>
 </div>
-<!-- <div class="reservation_status">
-    <table class="admin_reservation_table">
-        <tr>
-            <th class="admin_reservation_th">予約名</th>
-            <th class="admin_reservation_th">予約日時</th>
-            <th class="admin_reservation_th">予約人数</th>
-            <th class="admin_reservation_th"></th>
-        </tr>
-    </table>
-</div> -->
 @endsection
 <style>
         #h-menu{
@@ -118,7 +105,8 @@
             height:28px;
         }
 
-        .confirm_btn button{
+        .confirm_btn button,
+        .admin_back_btn button{
             font-size:15px;
             background:#fff;
             border:none;

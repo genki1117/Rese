@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Http\Requests\AdminCreateRequest;
 use Illuminate\Support\Facades\Auth;
-
 use Carbon\Carbon;
+
 use App\Models\Reservation;
 use App\Models\User;
 
@@ -24,14 +24,6 @@ class OwnerIndexController extends Controller
         $shops = Shop::all();
         $users = User::all();
         $today_reservation = Reservation::wheredate('started_at', '2022-01-20')->with('user')->first();
-
-        $today_reservation_user = User::with(['reservations' => function($query){
-            $query->where('started_at', '2022-01-16');
-        }])->get();
-
-        // $users = User::with(['reservations'])->first();
-
-        dd($today_reservation->user);
         return view('owner.home', compact('shops'));
     }
     /**

@@ -19,7 +19,7 @@ class ReservationMail extends Mailable
      */
     public function __construct($today_reservation)
     {
-        $this->$today_reservation = $today_reservation;
+        $this->today_reservation = $today_reservation;
     }
 
     /**
@@ -30,7 +30,7 @@ class ReservationMail extends Mailable
     public function build()
     {
         return $this->view('emails.reservation')
-                    ->with(['today_reservation' => $this->today_reservation])
+                    ->with(['today_reservation'=>$this->today_reservation])
                     ->subject('確認メール');
     }
 }

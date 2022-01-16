@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Like;
 use App\Models\Shop;
+use App\Http\Requests\ReservationRequest;
 
 
 class MyPageController extends Controller
@@ -48,8 +49,13 @@ class MyPageController extends Controller
     /**
      * 予約更新
      */
-    public function update(Request $request)
+    public function update(ReservationRequest $request)
     {
+        // $request->validate([
+        //     'date' => 'required',
+        //     'time' => 'required',
+        //     'number_of_people' => 'required'
+        // ]);
         $form = $request->all();
         $forms = [
             "id" => $request->id,

@@ -43,10 +43,10 @@ class ReservationUser extends Command
      */
     public function handle()
     {
-        $today = Carbon::today();
-        $today_reservations = Reservation::wheredate('started_at', '2022-01-17')->with('user')->get();
+        $today = Carbon::today()->format('Y-m-d');
+        $today_reservations = Reservation::wheredate('started_at', $today)->with('user')->with('shop')->get();
         foreach($today_reservations as $today_reservation){
-            return Mail::to($today_reservation->user->email)->send(new ReservationMail($today_reservation));
+            Mail::to($today_reservation->user->email)->send(new ReservationMail($today_reservation));
         }
     }
 }

@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReservationMail;
 use Carbon\Carbon;
+use App\Models\Reservation;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class ReservationUser extends Command
 {
@@ -41,6 +44,9 @@ class ReservationUser extends Command
     public function handle()
     {
         $today = Carbon::today();
-        $today_reservation = Reservation::wheredate('started_at', $today)->get();
+        $today_reservations = Reservation::wheredate('started_at', '2022-01-17')->with('user')->get();
+        foreach($today_reservations as $today_reservation){
+            return Mail::to($today_reservation->user->email)->send(new ReservationMail($today_reservation));
+        }
     }
 }

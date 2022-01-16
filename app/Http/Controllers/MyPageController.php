@@ -8,6 +8,7 @@ use App\Models\Reservation;
 use App\Models\Like;
 use App\Models\Shop;
 
+
 class MyPageController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class MyPageController extends Controller
     {
         $user = Auth::user();//user情報取得
         $user_Id = Auth::id();//userのIDのみ取得
-        $reservations = Reservation::where('user_id',$user_Id)->get();;
+        $reservations = Reservation::where('user_id',$user_Id)->get();
         //ReservationModelから情報を取得、where句の第一引数でreservationsテーブルの'user_id'を指定。
         //第二引数で取得したIDを指定しget
         $likes = Like::where('user_id', $user_Id)->get();

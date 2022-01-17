@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReservationRequest extends FormRequest
+class ReservationUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +26,16 @@ class ReservationRequest extends FormRequest
         return [
             'date' => 'required',
             'time' => 'required',
-            'number' => 'required'
+            'number_of_people' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'date.required' => '※日付を入力してください',
-            'time.required' => '※時間を選択してください',
-            'number.required' => '※人数を選択してください'
+            'date.required' => '※日時を入力してください',
+            'time.required' => '※時間を入力してください',
+            'number_of_people.required' => '※人数を入力してください'
         ];
-
     }
 }

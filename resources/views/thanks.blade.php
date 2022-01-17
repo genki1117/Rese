@@ -40,22 +40,6 @@
         font-size:22px;
     }
 
-    /* form{
-        text-align:center;
-    }
-
-
-    .input{
-        border:1px solid;
-        border-top:none;
-        border-left:none;
-        border-right:none;
-        margin-top:25px;
-        font-size:15px;
-        margin-left:10px;
-        color:gray;
-    }
-
     .input_label{
         display:block;
         font-size:20px;

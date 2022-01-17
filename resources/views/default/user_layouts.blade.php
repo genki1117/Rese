@@ -17,15 +17,13 @@
                 </div>
                     <nav class="nav" id="nav">
                         <ul>
-                            <!-- --↓メニュー中身↓-- -->
-                            <li><a href="/">Home</a></li>
-
                             <form action="/logout" method="post">
                                 @csrf
-                                <button class="logout_btn">Logout</button>
+                            <!-- --↓メニュー中身↓-- -->
+                            <button formaction="/" formmethod="get" class="menue_btn">Home</button>
+                            <button class="menue_btn">Logout</button>
+                            <button formaction="/mypage" formmethod="get" class="menue_btn">MyPage</button>
                             </form>
-
-                            <li><a href="mypage">Mypage</a></li>
                         </ul>
                     </nav>
                     <div class="menu" id="menu">
@@ -83,7 +81,7 @@
             color: #305dff;
         }
 
-        .logout_btn{
+        .menue_btn{
             border:none;
             margin: 0 auto;
             background:#fff;
@@ -107,7 +105,8 @@
             padding-top: 200px;
         }
 
-        .nav ul li,.logout_btn{
+        .nav ul li,
+        .menue_btn{
             display:block;
             list-style-type: none;
             margin-top: 20px;

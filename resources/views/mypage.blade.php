@@ -22,7 +22,27 @@
                     @csrf
                     <input type="hidden" name="id" value="{{$reservation->id}}">
                     <tr>
-                        <th>shop</th><td>{{ $reservation->shop->name }}</td>
+                        <th>
+                            shop
+                        </th>
+                        <td>
+                            {{ $reservation->shop->name }}
+                        </td>
+                        <td>
+                            @error('date')
+                            {{ $message }}
+                            @enderror
+                        </td>
+                        <td>
+                            @error('time')
+                            {{ $message }}
+                            @enderror
+                        </td>
+                        <td>
+                            @error('number_of_people')
+                            {{ $message }}
+                            @enderror
+                        </td>
                     </tr>
                     <tr>
                         <th>date</th>
@@ -181,7 +201,7 @@
 
     .like_shop_cd{
         width: 280px;
-        margin-right:20px;
+        margin-right:15px;
         margin-bottom:30px;
         background:#fff;
         box-shadow:4px 4px 5px 1px gray;
@@ -254,7 +274,6 @@
     input.date_change_input{
         width: 100%;
         height: 20px;
-        font-size:5px;
         border:none;
     }
 

@@ -66,5 +66,14 @@ $ php artisan serve
 
 オーナー管理画面
 ```bash
-http://localhost:8000/　owner/register
+http://localhost:8000/owner/register
 ```
+オーナーログイン
+```bash
+http://localhost:8000/owner/login
+```
+管理者管理画面
+```bash
+http://localhost:8000/admin/login
+```
+

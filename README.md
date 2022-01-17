@@ -63,3 +63,8 @@ $ php artisan serve
 
 ブラウザで http://localhost:8000/　を開く
 
+
+オーナー管理画面
+```bash
+http://localhost:8000/　owner/register
+```

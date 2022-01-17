@@ -25,35 +25,36 @@
                         <th>shop</th><td>{{ $reservation->shop->name }}</td>
                     </tr>
                     <tr>
-                        <div class="error_message">
-                            @error('date')
-                            {{ $message }}
-                            @enderror
-                        </div>
                         <th>date</th>
                         <td>{{$reservation->started_at->format('Y/m/d')}}</td>
                         <td>⇨</td>
                         <td><input type="date" name="date" class="date_change_input"></td>
                     </tr>
                     <tr>
-                        <th>time</th><td>{{$reservation->started_at->format('H:i')}}</td>
-                        <td>⇨</td>
-                        <td><select type="time" name="time" class="time_change_input" id="" >
-                        <option value="">選択してください</option>
-                        @foreach(config('time') as $key => $score)
-                        <option value="{{ $score }}">{{ $score }}</option>
-                        @endforeach
-                    </select></td>
+                        <th>time</th>
+                            <td>{{$reservation->started_at->format('H:i')}}</td>
+                            <td>⇨</td>
+                        <td>
+                            <select type="time" name="time" class="time_change_input" id="" >
+                                <option value="">選択してください</option>
+                                @foreach(config('time') as $key => $score)
+                                <option value="{{ $score }}">{{ $score }}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
-                        <th>number</th><td>{{$reservation->number_of_people}}人</td>
-                        <td>⇨</td>
-                        <td><select type="num" name="number_of_people" class="number_change_select" id="">
-                        <option value="">選択してください</option>
-                        @foreach(config('people_of_number') as $key =>$result)
-                        <option value="{{ $key }}">{{ $result }}</option>
-                        @endforeach
-                    </select></td>
+                        <th>number</th>
+                            <td>{{$reservation->number_of_people}}人</td>
+                            <td>⇨</td>
+                        <td>
+                            <select type="num" name="number_of_people" class="number_change_select" id="">
+                                <option value="">選択してください</option>
+                                @foreach(config('people_of_number') as $key =>$result)
+                                <option value="{{ $key }}">{{ $result }}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <th></th>

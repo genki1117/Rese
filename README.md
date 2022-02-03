@@ -40,7 +40,9 @@ ownerowner
 ```bash
 http://glacial-river-01328.herokuapp.com/admin/login
 ```
-
+```bash
+プルダウンで「仙人」を選択
+```
 
 # 作成環境
 PHP 7.4.25<br><br>

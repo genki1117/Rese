@@ -91,3 +91,17 @@ user@example.com
 ```bash
 useruser
 ```
+## オーナーログインページ
+```bash
+http://glacial-river-01328.herokuapp.com/owner/login
+```
+テストアカウント
+メールアドレス
+```bash
+testowner@example.com
+```
+パスワード
+# heroku
+```bash
+ownerowner
+```

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Admin;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,8 @@ class AdminIndexController extends Controller
     public function index(Request $request)
     {
         $id = Auth::guard('admin')->id();
-        $shop = Shop::where('id', $id)->first();
+        $admin = Admin::where('id', $id)->first();
+        $shop = Shop::where('id', $admin->shop_id)->first();
         $reservations = Reservation::where('shop_id', $shop->id)->with('user')->get();
         return view('admin.home', compact('id', 'shop', 'reservations'));
     }

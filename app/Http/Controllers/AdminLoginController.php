@@ -24,7 +24,7 @@ class AdminLoginController extends Controller
     {
         $credentials = $request->only(['email', 'password', 'shop_id']);
         if(Auth::guard('admin')->attempt($credentials)){
-            return redirect('/admin/{shop_id}/home');
+            return redirect('/admin/{id}/home');
         }else{
             return redirect('/admin/login');
         }

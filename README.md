@@ -1,6 +1,40 @@
 # Rese
 企業用飲食店web予約サービス<br>
 
+# heroku
+## ユーザーログインページ
+```bash
+http://glacial-river-01328.herokuapp.com/login
+```
+テストアカウント
+メールアドレス
+```bash
+user@example.com
+```
+パスワード
+```bash
+useruser
+```
+
+## オーナーログインページ
+```bash
+http://glacial-river-01328.herokuapp.com/owner/login
+```
+テストアカウント
+メールアドレス
+```bash
+testowner@example.com
+```
+パスワード
+```bash
+ownerowner
+```
+## 管理者ログイン
+```bash
+http://glacial-river-01328.herokuapp.com/admin/login
+```
+
+
 # 作成環境
 PHP 7.4.25<br><br>
 Laravel Framework 8.72.0<br><br>

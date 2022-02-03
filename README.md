@@ -101,7 +101,6 @@ http://glacial-river-01328.herokuapp.com/owner/login
 testowner@example.com
 ```
 パスワード
-# heroku
 ```bash
 ownerowner
 ```

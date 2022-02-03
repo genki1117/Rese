@@ -82,7 +82,7 @@ http://localhost:8000/admin/login
 ```bash
 http://glacial-river-01328.herokuapp.com/login
 ```
-ユーザーログインテストアカウント
+テストアカウント
 メールアドレス
 ```bash
 user@example.com

@@ -16,7 +16,7 @@ user@example.com
 useruser
 ```
 
-## オーナーログインページ
+### オーナーログインページ
 ```bash
 http://glacial-river-01328.herokuapp.com/owner/login
 ```
@@ -29,7 +29,7 @@ testowner@example.com
 ```bash
 ownerowner
 ```
-## 管理者ログイン
+### 管理者ログイン
 ```bash
 http://glacial-river-01328.herokuapp.com/admin/login
 ```

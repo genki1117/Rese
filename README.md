@@ -1,6 +1,7 @@
 # Rese
-企業用飲食店web予約サービス<br>
-
+企業用飲食店web予約サービス
+<br>
+<br>
 
 # heroku
 ### ユーザーログインページ
@@ -16,7 +17,8 @@ user@example.com
 ```bash
 useruser
 ```
-
+<br>
+<br>
 
 ### オーナーログインページ
 ```bash
@@ -31,7 +33,8 @@ testowner@example.com
 ```bash
 ownerowner
 ```
-
+<br>
+<br>
 
 ### 管理者ログイン
 ```bash
